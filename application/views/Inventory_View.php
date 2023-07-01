@@ -2,10 +2,18 @@
 
 <head>
     <title>Inventory</title>
+    <style>
+        #contents {
+            margin-left: 200px;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <?php include 'AdminDashboard_View.php'; ?>
+    <div id="contents">
+        this is inventory
+    </div>
 </body>
 
 </html>

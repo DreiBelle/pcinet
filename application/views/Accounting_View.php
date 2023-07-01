@@ -1,8 +1,20 @@
 <html>
-    <head>
+
+<head>
     <title>Account</title>
-    </head>
-    <body>
-    <?php include 'AdminDashboard_View.php'; ?>   
-    </body>
+
+    <style>
+        #contents {
+            margin-left: 200px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contents">
+        accounting
+    </div>
+</body>
+
 </html>

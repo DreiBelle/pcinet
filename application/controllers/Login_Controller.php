@@ -43,7 +43,7 @@ class Login_Controller extends CI_Controller
                 redirect('DataAnalytics_Controller');
             }
             elseif($user->role === 'accountant') {
-                redirect('Accountant_Controller');
+                redirect('Accounting_Controller');
             }
             elseif($user->role === 'employee') {
                 redirect('Inventory_Controller');
@@ -52,7 +52,7 @@ class Login_Controller extends CI_Controller
         } else {
             $data['error'] = 'Invalid username or password';
             echo '<script>alert("' . $data['error'], '");</script>';
-            // $this->load->view('Login_View', $data);
+            $this->load->view('Login_View', $data);
         }
     }
 }
