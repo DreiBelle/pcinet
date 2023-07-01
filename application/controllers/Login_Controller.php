@@ -33,7 +33,7 @@ class Login_Controller extends CI_Controller
             );
             $this->session->set_userdata('user', $userData);
 
-            redirect('Dashboard');
+            redirect('AdminDashboard_Controller');
         } else {
             // Login failed
             $data['error'] = 'Invalid username or password';
