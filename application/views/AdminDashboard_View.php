@@ -7,14 +7,14 @@
             background-color: #ADD8E6;
             width: 100vw;
             position: absolute;
+            padding: 2px;
             top: 0;
             left: 0;
-            padding: 10px;
         }
 
         td {
             text-align: center;
-            width: 6vw;
+            width: 5vw;
             font-size: 20px;
         }
 
@@ -28,9 +28,19 @@
             color: black
         }
 
-        img{
+        img {
             width: auto;
             height: 30px;
+        }
+
+        .User {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 10px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -38,12 +48,12 @@
 <body>
     <table class="navbar">
         <tr>
-            <td class="logo">
-                <img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo">
+            <td class="logo" style="padding-left: 15px">
+                <a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"> </a>
             </td>
-            <div class="mainNavbar">
+            <div style="padding-right: -100px">
                 <td>
-                    <a href="">Computer Service</a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">Computer Service</a>
                 </td>
                 <td>
                     <a href="">Data Analytics</a>
@@ -60,6 +70,10 @@
             </div>
         </tr>
     </table>
+
+    <p class="User"> User:
+        <?php echo $user['username']; ?>
+    </p>
 </body>
 
 </html>
