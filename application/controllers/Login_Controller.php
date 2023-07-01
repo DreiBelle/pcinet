@@ -33,7 +33,22 @@ class Login_Controller extends CI_Controller
             );
             $this->session->set_userdata('user', $userData);
 
-            redirect('AdminDashboard_Controller');
+            if ($user->role === 'admin') {
+                redirect('AdminDashboard_Controller');
+            }
+            elseif($user->role === 'technician') {
+                redirect('ComputerService_Controller');
+            }
+            elseif($user->role === 'data') {
+                redirect('DataAnalytics_Controller');
+            }
+            elseif($user->role === 'accountant') {
+                redirect('Accountant_Controller');
+            }
+            elseif($user->role === 'employee') {
+                redirect('Inventory_Controller');
+            }
+        
         } else {
             // Login failed
             $data['error'] = 'Invalid username or password';
