@@ -14,7 +14,7 @@ class Inventory_Controller extends CI_Controller {
             $this->load->view('Inventory_View', $data);
         }
         else {
-            redirect('LoginController');
+            redirect('Login_Controller');
         }
     }
 }

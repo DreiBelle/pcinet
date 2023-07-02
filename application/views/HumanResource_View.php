@@ -1,6 +1,6 @@
 <html>
     <head>
-    <title>Data Analytics</title>
+        <title>Human Resource Management</title>
     </head>
 
     <body>

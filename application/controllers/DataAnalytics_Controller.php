@@ -14,7 +14,7 @@ class DataAnalytics_Controller extends CI_Controller {
             $this->load->view('DataAnalytics_View', $data);
         }
         else {
-            redirect('LoginController');
+            redirect('Login_Controller');
         }
     }
 }

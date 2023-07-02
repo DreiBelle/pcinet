@@ -14,7 +14,7 @@ class ComputerService_Controller extends CI_Controller {
             $this->load->view('ComputerService_View', $data);
         }
         else {
-            redirect('LoginController');
+            redirect('Login_Controller');
         }
     }
 }

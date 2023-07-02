@@ -1,9 +1,11 @@
 <html>
-    <head>
 
-    </head>
+<head>
+    <title>Inventory</title>
+</head>
 
-    <body>
-        inventory
-    </body>
+<body>
+    <?php include 'AdminDashboard_View.php'; ?>
+</body>
+
 </html>

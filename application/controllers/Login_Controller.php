@@ -12,7 +12,7 @@ class Login_Controller extends CI_Controller
     {
         $data['error'] = 'Invalid username or password';
         echo '<script></script>';
-        $this->load->view('Login_View', $data);
+        $this->load->view('Login_View');
     }
 
     public function authenticate()
@@ -50,10 +50,9 @@ class Login_Controller extends CI_Controller
             }
         
         } else {
-            // Login failed
             $data['error'] = 'Invalid username or password';
             echo '<script>alert("' . $data['error'], '");</script>';
-            $this->load->view('Login_View', $data);
+            // $this->load->view('Login_View', $data);
         }
     }
 }

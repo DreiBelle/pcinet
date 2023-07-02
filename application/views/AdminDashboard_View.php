@@ -56,16 +56,16 @@
                     <a href="<?php echo site_url('/ComputerService_Controller'); ?>">Computer Service</a>
                 </td>
                 <td>
-                    <a href="">Data Analytics</a>
+                    <a href="<?php echo site_url('/DataAnalytics_Controller'); ?>">Data Analytics</a>
                 </td>
                 <td>
-                    <a href="">Human Resource</a>
+                    <a href="<?php echo site_url('/HumanResource_Controller'); ?>">Human Resource</a>
                 </td>
                 <td>
-                    <a href="">Accounting</a>
+                    <a href="<?php echo site_url('/Accounting_Controller'); ?>">Accounting</a>
                 </td>
                 <td>
-                    <a href="">inventory</a>
+                    <a href="<?php echo site_url('/Inventory_Controller'); ?>">inventory</a>
                 </td>
             </div>
         </tr>
