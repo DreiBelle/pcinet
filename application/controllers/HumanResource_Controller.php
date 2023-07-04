@@ -11,7 +11,7 @@ class HumanResource_Controller extends CI_Controller {
         $user = $this->session->userdata('user');
         if ($user['role'] == "admin") {
             $data['user'] = $user;
-            $data['navbar'] = "NavbarAdmin_View";
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('HumanResource_View', $data);
         }
         else {

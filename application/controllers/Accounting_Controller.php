@@ -13,11 +13,11 @@ class Accounting_Controller extends CI_Controller {
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
-            $data['navbar'] = "NavbarAdmin_View";
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('Accounting_View', $data);
         } else if ($user['role'] == "Accounting") {
             $data['user'] = $user;
-            $data['navbar'] = "NavbarAccounting_View";
+            $data['navbar'] = "NavBar/NavbarAccounting_View";
             $this->load->view('Dashboard_View', $data);
         }
     }

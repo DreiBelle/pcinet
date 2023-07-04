@@ -48,7 +48,6 @@ class Login_Controller extends CI_Controller
             // elseif($user->role === 'employee') {
             //     redirect('Inventory_Controller');
             // }
-
             redirect('Dashboard_Controller');
         
         } else {

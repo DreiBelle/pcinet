@@ -12,11 +12,11 @@ class DataAnalytics_Controller extends CI_Controller {
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
-            $data['navbar'] = "NavbarAdmin_View";
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('DataAnalytics_View', $data);
         } else if ($user['role'] == "data") {
             $data['user'] = $user;
-            $data['navbar'] = "NavBarData_View";
+            $data['navbar'] = "NavBar/NavBarData_View";
             $this->load->view('Dashboard_View', $data);
         }
     }

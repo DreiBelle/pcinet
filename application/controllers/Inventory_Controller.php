@@ -12,11 +12,11 @@ class Inventory_Controller extends CI_Controller {
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
-            $data['navbar'] = "NavbarAdmin_View";
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('Inventory_View', $data);
         } else if ($user['role'] == "employee") {
             $data['user'] = $user;
-            $data['navbar'] = "NavBarEmployee_View";
+            $data['navbar'] = "NavBar/NavBarEmployee_View";
             $this->load->view('Dashboard_View', $data);
         }
     }
