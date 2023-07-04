@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <?php $this->load->view($navbar) ?>
     <div id="contents">
         accounting
     </div>

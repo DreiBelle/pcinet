@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <?php $this->load->view($navbar) ?>
     <div id="contents">
         this is inventory
     </div>

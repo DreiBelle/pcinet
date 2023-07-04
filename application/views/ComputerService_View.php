@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <?php $this->load->view($navbar) ?>
+    
     <div id="contents">
         computer service
     </div>

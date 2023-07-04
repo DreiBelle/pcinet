@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
     <style>
         #contents {
             margin-left: 200px;
@@ -13,8 +13,8 @@
 <body>
     <?php $this->load->view($navbar)?>
 
-    <div>
-        admin Dashboard
+    <div id="contents">
+        Everyones Dashboard
     </div>
 </body>
 

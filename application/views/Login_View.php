@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url("assets/background_login.jpg");
+            background-image: url('<?php echo base_url('assets/background_login.jpg'); ?>');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -16,7 +16,7 @@
         }
 
         form {
-            width: 350px;
+            width: 350px;   
             height: 300px;
             padding: 20px;
             position: relative;

@@ -6,15 +6,17 @@ class ComputerService_Controller extends CI_Controller {
         
     }
 
-    public function index() {
-        
+    public function index() {   
         $user = $this->session->userdata('user');
-        if ($user) {
+
+        if ($user['role'] == "admin") {
             $data['user'] = $user;
+            $data['navbar'] = "NavbarAdmin_View";
             $this->load->view('ComputerService_View', $data);
-        }
-        else {
-            redirect('Login_Controller');
+        } else if ($user['role'] == "technician") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavbarTechnician_View";
+            $this->load->view('Dashboard_View', $data);
         }
     }
 }

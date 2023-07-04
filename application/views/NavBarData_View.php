@@ -82,11 +82,11 @@
     <div id="navbar">
         <ul>
             <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
-            <div><li><a href="<?php echo site_url('/ComputerService_Controller'); ?>">Computer Service</a></li></div>
-            <li><a href="<?php echo site_url('/DataAnalytics_Controller'); ?>">Data Analytics</a></li>
-            <li><a href="<?php echo site_url('/HumanResource_Controller'); ?>">Human Resource</a></li>
-            <li><a href="<?php echo site_url('/Accounting_Controller'); ?>">Accounting</a></li>
-            <li><a href="<?php echo site_url('/Inventory_Controller'); ?>">Inventory</a></li>
+            <div><li><a href="<?php echo site_url('/Dashboard_Controller'); ?>">Dashboard</a></li></div>
+            <div><li><a href="<?php echo site_url('/'); ?>">View Computer Service Report</a></li></div>
+            <div><li><a href="<?php echo site_url('/'); ?>">View HR Report</a></li></div>
+            <div><li><a href="<?php echo site_url('/'); ?>">View Accounting Report</a></li></div>
+            <div><li><a href="<?php echo site_url('/'); ?>">View Inventory Report</a></li></div>
         </ul>
     </div>
 

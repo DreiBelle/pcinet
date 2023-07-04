@@ -83,10 +83,10 @@
         <ul>
             <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
             <div><li><a href="<?php echo site_url('/Dashboard_Controller'); ?>">Dashboard</a></li></div>
-            <div><li><a href="<?php echo site_url('/'); ?>">Calculate Total Price</a></li></div>
-            <div><li><a href="<?php echo site_url('/'); ?>">Add Device Diagnostics</a></li></div>
-            <div><li><a href="<?php echo site_url('/'); ?>">Update Device Status</a></li></div>
-            <div><li><a href="<?php echo site_url('/'); ?>">View Device Status</a></li></div>
+            <div><li><a href="<?php echo site_url(''); ?>">Add Items</a></li></div>
+            <div><li><a href="<?php echo site_url(''); ?>">Remove Items</a></li></div>
+            <div><li><a href="<?php echo site_url(''); ?>">View Items</a></li></div>
+            <div><li><a href="<?php echo site_url(''); ?>">Update Items</a></li></div>
         </ul>
     </div>
 
