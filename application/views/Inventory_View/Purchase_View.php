@@ -31,6 +31,19 @@
             background-color: rgba(0, 0, 0, .5);
         }
 
+        .BuyStocksDesign {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, .5);
+
+        }
+
         .AddItemModalContentDesign {
             background-color: white;
             border: 1px solid #888;
@@ -38,6 +51,16 @@
             width: fit-content;
             height: fit-content;
             border-radius: 25px;
+        }
+
+        .BuyStocksContentDesign {
+            background-color: white;
+            border: 1px solid #888;
+            padding: 20px;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 25px;
+
         }
 
         .flex-center {
@@ -67,21 +90,25 @@
                 <tr style="background-color: #f2f2f2;">
                     <!-- <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" height="50px"
                         width="25%"> Image </th> -->
-                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="20%"> Image
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="16.67%"> Image
                     </th>
-                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="20%"> ID </th>
-                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="20%"> Name
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="16.67%"> ID
                     </th>
-                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="20%"> Price
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="16.67%"> Name
                     </th>
-                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="20%"> Buy </th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="16.67%"> Stock
+                    </th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;" width="16.67%"> Price
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($items as $item) { ?>
-                    <tr class="SelectableRow" height="40px" style="font-size: 15px; text-align: center">
+                    <tr class="SelectableRow" height="40px" style="font-size: 15px; text-align: center"
+                        onclick="showModal('<?php echo $item->Image; ?>', '<?php echo $item->ItemID; ?>', '<?php echo $item->ItemName; ?>', '<?php echo $item->ItemStock; ?>', '<?php echo $item->ItemPrice; ?>')">
                         <td>
-                            <img style="height: 100px; width:300px; object-fit: cover; border-radius: 10px; padding: 5px" src="<?php echo MAIN_BASE_URL . $item->Image; ?>">
+                            <img style="height: 100px; width:300px; object-fit: cover; border-radius: 10px; padding: 5px"
+                                src="<?php echo MAIN_BASE_URL . $item->Image; ?>">
                         </td>
                         <td>
                             <?php echo $item->ItemID; ?>
@@ -90,10 +117,10 @@
                             <?php echo $item->ItemName; ?>
                         </td>
                         <td>
-                            <?php echo $item->ItemPrice; ?>
+                            <?php echo $item->ItemStock; ?>
                         </td>
                         <td>
-                            <a href="#"><img style="height:70; width:auto;" src="<?php echo base_url('assets/Icons/buy1.png'); ?>" alt="Logo"></a>
+                            <?php echo $item->ItemPrice; ?>
                         </td>
                     </tr>
                 <?php } ?>
@@ -150,6 +177,25 @@
                 </div>
             </div>
         </div>
+
+        <div id="BuyStocks" class="BuyStocksDesign">
+            <div class="flex-center">
+                <div id="BuyStocksContentDesign" class="BuyStocksContentDesign">
+                    <img id="ImageDisplay" src="" alt="Item Image">
+                    <p id="ItemInfo"></p>
+                    <form method="post" action="<?php echo site_url('/Inventory_Controller/AddStocks'); ?>">
+                        <input type="hidden" name="ItemIDInput" id="ItemIDInput">
+                        <input type="text" name="ItemPriceInput" id="ItemPriceInput">
+                        <input type="text" name="StocksInput" id="StocksInput">
+                        <input style="margin: 12px; width: 90%; height: 30px;" type="submit" value="SAVE">
+                        <input style="margin: 12px; width: 90%; height: 30px;" type="button" value="Cancel"
+                            class="CloseBuyStockModal">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -177,6 +223,42 @@
                 }
             };
         });
+
+        function showModal(Image, ItemID, ItemName, Stocks, ItemPrice) {
+            var modal = document.getElementById("BuyStocks");
+            var modalContent = document.getElementById("BuyStocksContentDesign");
+
+            var ImageDisplay = document.getElementById("ImageDisplay");
+            var infoParagraph = document.getElementById("ItemInfo");
+            var StocksInput = document.getElementById("StocksInput");
+            var ItemIDInput = document.getElementById("ItemIDInput");
+            var ItemPriceInput = document.getElementById("ItemPriceInput");
+
+            ItemIDInput.value = ItemID;
+            ItemPriceInput.value = ItemPrice;
+
+            if (!ImageDisplay || !infoParagraph || !StocksInput) {
+                console.error("One or more elements not found. Make sure the element IDs are correct.");
+                return;
+            }
+
+            ImageDisplay.src = "/PCINET/assets/uploads/" + Image;
+
+            console.log(Image);
+
+            var infoText = "ID: " + ItemID + "<br>" +
+                "Name: " + ItemName + "<br>" +
+                "Price: " + ItemPrice;
+
+            infoParagraph.innerHTML = infoText;
+
+
+            modal.style.display = "block";
+        }
+        document.getElementsByClassName("CloseBuyStockModal")[0].onclick = function () {
+            var modal = document.getElementById("BuyStocks");
+            modal.style.display = "none";
+        };
     </script>
 </body>
 

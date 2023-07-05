@@ -74,10 +74,36 @@ class Inventory_Controller extends CI_Controller
             'ItemName' => $ItemName,
             'ItemPrice' => $ItemPrice,
             'Image' => $imageFileName,
+            'ItemStock' => 0,
         );
 
         $this->Inventory_Model->InsertItem($data);
 
         redirect('/Inventory_Controller/ViewPurchase');
+    }
+
+    public function AddStocks()
+    {
+        $ItemID = $this->input->post('ItemIDInput');
+        $Stocks = (int) $this->input->post('StocksInput');
+        $Price = (int) $this->input->post('ItemPriceInput');
+
+        $currentStocks = (int) $this->Inventory_Model->getStocks($ItemID);
+        $GetCurrentTotalExpenses = (int) $this->Inventory_Model->getExpenses($ItemID);
+        
+        $newStocks = $currentStocks + $Stocks;
+        $expenses = $Price * $Stocks;
+        $GetTotalExpenses = $expenses + $GetCurrentTotalExpenses;
+
+        $data = array(
+            'ItemStock' => $newStocks,
+            'TotalProductExpenses' => $GetTotalExpenses,
+        );
+
+        $this->Inventory_Model->AddStock($ItemID, $data);
+
+        redirect('/Inventory_Controller/ViewPurchase');
+
+
     }
 }

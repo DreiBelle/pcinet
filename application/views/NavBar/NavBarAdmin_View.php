@@ -99,6 +99,12 @@
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Dashboard_Controller'); ?>">
                 <li style="border-bottom: 1px solid black; border-top: 1px solid black">Dashboard</li>
             </a>
+
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/CustomerPurchase_Controller/ViewCustomerPurchase'); ?>">
+                <li style="border-bottom: 1px solid black;">Purchase</li>
+            </a>
+
             <li class="dropdown">
                 <span>Computer Service</span>
                 <div class="dropdown-content">
@@ -172,7 +178,6 @@
                 <li>
                     <div style="position: fixed; bottom:0;">Log out</div>
                 </li>
-
             </a>
         </ul>
     </div>
