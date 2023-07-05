@@ -4,7 +4,7 @@
     <title>Dashboard</title>
     <style>
         #contents {
-            margin-left: 200px;
+            margin-left: 240px;
             padding: 20px;
         }
     </style>

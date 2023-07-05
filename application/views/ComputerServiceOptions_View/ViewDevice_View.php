@@ -4,7 +4,7 @@
     <title>View Device</title>
     <style>
         #contents {
-            margin-left: 200px;
+            margin-left: 240px;
             padding: 20px;
         }
 
@@ -25,7 +25,8 @@
             background-color: white;
             border: 1px solid #888;
             padding: 20px;
-            width: 50%;
+            width: fit-content;
+            height: fit-content;
             height: 475px;
             border-radius: 25px;
         }
@@ -51,16 +52,21 @@
             align-items: center;
             height: 100vh;
         }
+
+        .tableshow:hover {
+            background-color: lightblue;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <?php $this->load->view($navbar) ?>
     <div id="contents">
-
         <form method="get" action="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
-            <input type="text" name="searchDeviceID" placeholder="Search by DeviceID">
-            <input type="submit" value="Search">
+            <input style="height: 30px; width: 94.5%;" type="text" name="searchDeviceID"
+                placeholder="Search by DeviceID">
+            <input style="height: 30px; width: 5%;" type="submit" value="S">
         </form>
 
         <button style="margin-bottom: 20px; width: 100%; height: 30px;" id="AddDeviceButton">Add Devices</button>
@@ -184,7 +190,7 @@
             </thead>
             <tbody>
                 <?php foreach ($data as $row): ?>
-                    <tr
+                    <tr class="tableshow"
                         onclick="showModal('<?php echo $row->DeviceID; ?>', '<?php echo $row->CustomerName; ?>', '<?php echo $row->DeviceModel; ?>', '<?php echo $row->DeviceType; ?>', '<?php echo $row->OperatingSystem; ?>', '<?php echo $row->Processor; ?>', '<?php echo $row->RAM; ?>', '<?php echo $row->Storage; ?>', '<?php echo $row->Display; ?>', '<?php echo $row->DateGiven; ?>', '<?php echo $row->Status; ?>')">
                         <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
                             <?php echo $row->DeviceID; ?>
@@ -226,25 +232,113 @@
     </div>
 
     <div id="UpdateModal" class="modal">
-        <!-- Modal content -->
-        <div id="UpdateModalContent" class="modal-content">
-            <span class="close1">&times;</span>
+        <div class="flex-center">
+            <!-- Modal content -->
+            <div id="UpdateModalContent" class="modal-content">
 
-            <form method="post" action="<?php echo site_url('/ComputerService_Controller/UpdateDevice'); ?>">
-                <input type="text" id=deviceIDInput name=deviceIDInput readonly>
-                <input type="text" id=customerNameInput name=customerNameInput>
-                <input type="text" id=deviceModelInput name=deviceModelInput>
-                <input type="text" id=deviceTypeInput name=deviceTypeInput>
-                <input type="text" id=operatingSystemInput name=operatingSystemInput>
-                <input type="text" id=processorInput name=processorInput>
-                <input type="text" id=RAMInput name=RAMInput>
-                <input type="text" id=storageInput name=storageInput>
-                <input type="text" id=displayInput name=displayInput>
-                <input type="text" id=dateGivenInput name=dateGivenInput>
-                <input type="text" id=statusInput name=statusInput>
-                <input type="submit" value="Update">
-                <input type="submit" value="Delete" name="deleteDevice">
-            </form>
+                <table style="width: 100%;">
+                    <form method="post" action="<?php echo site_url('/ComputerService_Controller/UpdateDevice'); ?>">
+                        <input type="hidden" id="deviceIDInput" name=deviceIDInput >
+                        <tr>
+                            <td colspan="2" style="text-align: center; font-size: 50px; padding-top: -50px;">Update
+                                Devices</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Customer Name</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="customerNameInput" id="customerNameInput" required>
+                            </td>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Device Model</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="deviceModelInput" id="deviceModelInput" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Device Type</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="deviceTypeInput" id="deviceTypeInput" required>
+                            </td>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Operating System</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="operatingSystemInput" id="operatingSystemInput" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Processor</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="processorInput" id="processorInput" required>
+                            </td>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">RAM</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="RAMInput" id="RAMInput" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Storage</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="storageInput" id="storageInput" required>
+                            </td>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Display</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="displayInput" id="displayInput" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Date Given</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="dateGivenInput" id="dateGivenInput" required>
+                            </td>
+                            <td style="width: 50%;">
+                                <p style="margin-bottom: -5px;">Status</p>
+                                <input
+                                    style="width: 95%; margin-left: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                    type="text" name="statusInput" id="statusInput" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input
+                                    style="width: 100%; margin-top: 5px; height: 35px; border-radius: 4px; border: 1px solid #ccc; background-color: #f2f2f2; color: #333; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; cursor: pointer;"
+                                    type="submit" value="Update">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input
+                                    style="width: 100%; margin-top: 5px; height: 35px; border-radius: 4px; border: 1px solid #ccc; background-color: #f2f2f2; color: #333; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; cursor: pointer;"
+                                    type="submit" value="Delete" name="Delete">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input
+                                    style="text-align:center ;width: 100%; margin-top: 20px; height: 35px; border-radius: 4px; border: 1px solid #ccc; background-color: #f2f2f2; color: #333; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 5px"
+                                    type="button" value="Cancel" class="close1">
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -290,6 +384,12 @@
             var button = document.getElementById("AddDeviceButton");
             var modal = document.getElementById("AddDeviceModal");
             var span = document.getElementsByClassName("close")[0];
+
+            window.addEventListener('click', function(event){
+                if(event.target === modal){
+                    closeModal();
+                }
+            })
 
             button.onclick = function () {
                 modal.style.display = "block";

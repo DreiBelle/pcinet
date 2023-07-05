@@ -6,11 +6,13 @@
         body {
             margin: 0;
             padding: 0;
+            font-family: 'Mulish', sans-serif;
         }
 
         #navbar {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             background-color: #219ebc;
-            width: 200px;
+            width: 240px;
             height: 100vh;
             position: fixed;
             left: 0;
@@ -44,7 +46,8 @@
 
         img {
             height: auto;
-            width: 150px;
+            width: 170px;
+            margin-left: 10px;
         }
 
         #User {
@@ -77,13 +80,14 @@
 
         .dropdown:hover .dropdown-content {
             display: block;
-            border-radius: 20px;
-            width: fit-content;
+            border-radius: 10px;
+            width: 200px;
         }
 
         p {
             padding: 5px;
-            font-size: 15px;
+            font-size: 16px;
+            text-align: center;
         }
     </style>
 </head>

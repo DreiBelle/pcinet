@@ -6,9 +6,9 @@ class ComputerService_Controller extends CI_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->model('AddDevice_Model');
+        $this->load->library('pagination');
     }
-
-    public function index()
+    public function index($page = 1)
     {
         $user = $this->session->userdata('user');
 
@@ -106,9 +106,9 @@ class ComputerService_Controller extends CI_Controller
             'Status' => $Status,
         );
 
-        if ($this->input->post('deleteDevice')) {
+        if ($this->input->post('Delete')) {
 
-            $DeviceID = $this->input->post('deviceIDInput');
+            // $DeviceID = $this->input->post('deviceIDInput');
 
             $this->AddDevice_Model->DeleteDevice($DeviceID);
 
