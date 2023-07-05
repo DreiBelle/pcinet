@@ -26,11 +26,16 @@ class ComputerService_Controller extends CI_Controller
     public function ViewDevices()
     {
         $user = $this->session->userdata('user');
+        $searchDeviceID = $this->input->get('searchDeviceID');
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
-            $data['data'] = $this->AddDevice_Model->GetData();
+            if (!empty($searchDeviceID)) {
+                $data['data'] = $this->AddDevice_Model->GetIDData($searchDeviceID);
+            } else {
+                $data['data'] = $this->AddDevice_Model->GetData();
+            }
             $this->load->view('ComputerServiceOptions_View/ViewDevice_View', $data);
         } else if ($user['role'] == "technician") {
             $data['user'] = $user;
@@ -53,7 +58,7 @@ class ComputerService_Controller extends CI_Controller
         $Display = $this->input->post('Display');
         $DateGiven = $this->input->post('DateGiven');
         $Status = $this->input->post('Status');
-        
+
         $data = array(
             'DeviceID' => $DeviceID,
             'CustomerName' => $CustomerName,
@@ -71,5 +76,47 @@ class ComputerService_Controller extends CI_Controller
         $this->AddDevice_Model->InsertDevice($data);
 
         redirect('/ComputerService_Controller/ViewDevices');
+    }
+
+    public function UpdateDevice()
+    {
+        $DeviceID = $this->input->post('deviceIDInput');
+        $CustomerName = $this->input->post('customerNameInput');
+        $DeviceModel = $this->input->post('deviceModelInput');
+        $DeviceType = $this->input->post('deviceTypeInput');
+        $OperatingSystem = $this->input->post('operatingSystemInput');
+        $Processor = $this->input->post('processorInput');
+        $RAM = $this->input->post('RAMInput');
+        $Storage = $this->input->post('storageInput');
+        $Display = $this->input->post('displayInput');
+        $DateGiven = $this->input->post('dateGivenInput');
+        $Status = $this->input->post('statusInput');
+
+        $data = array(
+            'DeviceID' => $DeviceID,
+            'CustomerName' => $CustomerName,
+            'DeviceModel' => $DeviceModel,
+            'DeviceType' => $DeviceType,
+            'OperatingSystem' => $OperatingSystem,
+            'Processor' => $Processor,
+            'RAM' => $RAM,
+            'Storage' => $Storage,
+            'Display' => $Display,
+            'DateGiven' => $DateGiven,
+            'Status' => $Status,
+        );
+
+        if ($this->input->post('deleteDevice')) {
+
+            $DeviceID = $this->input->post('deviceIDInput');
+
+            $this->AddDevice_Model->DeleteDevice($DeviceID);
+
+            redirect('/ComputerService_Controller/ViewDevices');
+        } else {
+            $this->AddDevice_Model->UpdateDevice($DeviceID, $data);
+
+            redirect('/ComputerService_Controller/ViewDevices');
+        }
     }
 }

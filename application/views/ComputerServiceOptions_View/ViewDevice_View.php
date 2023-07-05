@@ -57,12 +57,17 @@
 <body>
     <?php $this->load->view($navbar) ?>
     <div id="contents">
+
+        <form method="get" action="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
+            <input type="text" name="searchDeviceID" placeholder="Search by DeviceID">
+            <input type="submit" value="Search">
+        </form>
+
         <button style="margin-bottom: 20px; width: 100%; height: 30px;" id="AddDeviceButton">Add Devices</button>
 
         <div id="AddDeviceModal" class="modal">
             <div class="flex-center">
                 <div class="modal-content">
-                    <!-- <span class="close">Close</span> -->
                     <form method="post" action="<?php echo site_url('/ComputerService_Controller/AddDevice'); ?>">
                         <table style="width: 100%;">
                             <tr>
@@ -162,44 +167,125 @@
         </div>
 
         <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
-    <thead>
-        <tr style="background-color: #f2f2f2;">
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device ID</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Customer Name</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device Model</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device Type</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Operating System</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Processor</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">RAM</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Storage</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Display</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Date Given</th>
-            <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($data as $row): ?>
-            <tr>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->DeviceID; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->CustomerName; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->DeviceModel; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->DeviceType; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->OperatingSystem; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->Processor; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->RAM; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->Storage; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->Display; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->DateGiven; ?></td>
-                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;"><?php echo $row->Status; ?></td>
-            </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device ID</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Customer Name</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device Model</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device Type</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Operating System</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Processor</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">RAM</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Storage</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Display</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Date Given</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data as $row): ?>
+                    <tr
+                        onclick="showModal('<?php echo $row->DeviceID; ?>', '<?php echo $row->CustomerName; ?>', '<?php echo $row->DeviceModel; ?>', '<?php echo $row->DeviceType; ?>', '<?php echo $row->OperatingSystem; ?>', '<?php echo $row->Processor; ?>', '<?php echo $row->RAM; ?>', '<?php echo $row->Storage; ?>', '<?php echo $row->Display; ?>', '<?php echo $row->DateGiven; ?>', '<?php echo $row->Status; ?>')">
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->DeviceID; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->CustomerName; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->DeviceModel; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->DeviceType; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->OperatingSystem; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->Processor; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->RAM; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->Storage; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->Display; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->DateGiven; ?>
+                        </td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">
+                            <?php echo $row->Status; ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
 
+    <div id="UpdateModal" class="modal">
+        <!-- Modal content -->
+        <div id="UpdateModalContent" class="modal-content">
+            <span class="close1">&times;</span>
 
+            <form method="post" action="<?php echo site_url('/ComputerService_Controller/UpdateDevice'); ?>">
+                <input type="text" id=deviceIDInput name=deviceIDInput readonly>
+                <input type="text" id=customerNameInput name=customerNameInput>
+                <input type="text" id=deviceModelInput name=deviceModelInput>
+                <input type="text" id=deviceTypeInput name=deviceTypeInput>
+                <input type="text" id=operatingSystemInput name=operatingSystemInput>
+                <input type="text" id=processorInput name=processorInput>
+                <input type="text" id=RAMInput name=RAMInput>
+                <input type="text" id=storageInput name=storageInput>
+                <input type="text" id=displayInput name=displayInput>
+                <input type="text" id=dateGivenInput name=dateGivenInput>
+                <input type="text" id=statusInput name=statusInput>
+                <input type="submit" value="Update">
+                <input type="submit" value="Delete" name="deleteDevice">
+            </form>
+        </div>
     </div>
 
     <script>
+        function showModal(deviceID, customerName, deviceModel, deviceType, operatingSystem, processor, RAM, storage, display, dateGiven, status) {
+            var modal = document.getElementById("UpdateModal");
+            var modalContent = document.getElementById("UpdateModalContent");
+
+            var deviceIDInput = document.getElementById("deviceIDInput");
+            var customerNameInput = document.getElementById("customerNameInput");
+            var deviceModelInput = document.getElementById("deviceModelInput");
+            var deviceTypeInput = document.getElementById("deviceTypeInput");
+            var operatingSystemInput = document.getElementById("operatingSystemInput");
+            var processorInput = document.getElementById("processorInput");
+            var RAMInput = document.getElementById("RAMInput");
+            var storageInput = document.getElementById("storageInput");
+            var displayInput = document.getElementById("displayInput");
+            var dateGivenInput = document.getElementById("dateGivenInput");
+            var statusInput = document.getElementById("statusInput");
+
+            deviceIDInput.value = deviceID;
+            customerNameInput.value = customerName;
+            deviceModelInput.value = deviceModel;
+            deviceTypeInput.value = deviceType;
+            operatingSystemInput.value = operatingSystem;
+            processorInput.value = processor;
+            RAMInput.value = RAM;
+            storageInput.value = storage;
+            displayInput.value = display;
+            dateGivenInput.value = dateGiven;
+            statusInput.value = status;
+
+            modal.style.display = "block";
+        }
+
+        // Close the modal when the user clicks on the close button
+        document.getElementsByClassName("close1")[0].onclick = function () {
+            var modal = document.getElementById("UpdateModal");
+            modal.style.display = "none";
+        };
+
         document.addEventListener("DOMContentLoaded", function () {
             var button = document.getElementById("AddDeviceButton");
             var modal = document.getElementById("AddDeviceModal");

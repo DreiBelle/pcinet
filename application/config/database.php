@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'pci_net',
+	'database' => 'pcinet',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -114,6 +114,6 @@ $db['default'] = array(
 // 	'encrypt' => FALSE,
 // 	'compress' => FALSE,
 // 	'stricton' => FALSE,
-// 	'failover' => array(),
+// 	'failover' => array(),  
 // 	'save_queries' => TRUE
 // );
