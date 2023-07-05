@@ -189,7 +189,7 @@
 
     <div id="User">
         <p class="User">
-            <?php echo $user['username']; ?>
+            User: <?php echo $user['username']; ?>
         </p>
     </div>
 </body>

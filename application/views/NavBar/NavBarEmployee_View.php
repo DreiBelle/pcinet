@@ -100,7 +100,7 @@
     </div>
 
     <div id="User">
-        <p class="User"><?php echo $user['username']; ?></p>
+        <p class="User">User: <?php echo $user['username']; ?></p>
     </div>
 </body>
 </html>
