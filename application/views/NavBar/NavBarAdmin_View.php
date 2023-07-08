@@ -52,11 +52,8 @@
 
         #User {
             position: fixed;
-            bottom: 0;
-            right: 0;
-            margin: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
+            bottom: 5;
+            right: 10;
             background-color: #f1f1f1;
             border-radius: 10px;
         }
@@ -66,6 +63,8 @@
         .dropdown {
             position: relative;
             display: inline-block;
+            width: 87%;
+            border-bottom: 1px solid black;
         }
 
         .dropdown-content {
@@ -75,7 +74,7 @@
             min-width: 180px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
-
+            padding-left: 10px;
         }
 
         .dropdown:hover .dropdown-content {
@@ -85,9 +84,10 @@
         }
 
         p {
-            padding: 5px;
+            padding-left: 5px;
             font-size: 16px;
-            text-align: center;
+            text-align: left;
+            margin-left: -10px;
         }
     </style>
 </head>
@@ -96,104 +96,91 @@
     <div id="navbar">
         <ul>
             <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
-            <div>
-                <li><a href="<?php echo site_url('/Dashboard_Controller'); ?>">Dashboard</a></li>
-            </div>
-            <li>
-                <div class="dropdown">
-                    <span>Computer Service</span>
-                    <div class="dropdown-content">
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Calculate Total Price</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
-                            <p>View Devices</p>
-                        </a>
-                    </div>
+            <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Dashboard_Controller'); ?>">
+                <li style="border-bottom: 1px solid black; border-top: 1px solid black">Dashboard</li>
+            </a>
+            <li class="dropdown">
+                <span>Computer Service</span>
+                <div class="dropdown-content">
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Calculate Total Price</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
+                        <p>View Devices</p>
+                    </a>
                 </div>
             </li>
-            <li>
-                <div class="dropdown">
-                    <span>Data Analytics</span>
-                    <div class="dropdown-content">
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Computer Service Report</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View HR Report</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Accounting Report</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Inventory Report</p>
-                        </a>
-                    </div>
+            <li class="dropdown">
+                <span>Data Analytics</span>
+                <div class="dropdown-content">
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Computer Service Report</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>HR Report</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Accounting Report</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Inventory Report</p>
+                    </a>
                 </div>
             </li>
-            <li>
-                <div class="dropdown">
-                    <span>Human Resource</span>
-                    <div class="dropdown-content">
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Add Employee</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Update Employee</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Remove Employee</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Employee</p>
-                        </a>
-                    </div>
+            <li class="dropdown">
+                <span>Human Resource</span>
+                <div class="dropdown-content">
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Add Employee</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Update Employee</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Remove Employee</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>View Employee</p>
+                    </a>
                 </div>
             </li>
-            <li>
-                <div class="dropdown">
-                    <span>Accounting</span>
-                    <div class="dropdown-content">
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Add Records</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Update Records</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Remove Records</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Records</p>
-                        </a>
-                    </div>
+            <li class="dropdown">
+                <span>Accounting</span>
+                <div class="dropdown-content">
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Add Records</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Update Records</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>Remove Records</p>
+                    </a>
+                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
+                        <p>View Records</p>
+                    </a>
                 </div>
             </li>
-            <li>
-                <div class="dropdown">
-                    <span>Inventory</span>
-                    <div class="dropdown-content">
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Add Items</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Update Items</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>Remove Items</p>
-                        </a>
-                        <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                            <p>View Items</p>
-                        </a>
-                    </div>
-                </div>
-            </li>
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
+                <li style="border-bottom: 1px solid black;">Inventory</li>
+            </a>
+
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
+
+                <li>
+                    <div style="position: fixed; bottom:0;">Log out</div>
+                </li>
+
+            </a>
         </ul>
     </div>
 
     <div id="User">
         <p class="User">
-            User: <?php echo $user['username']; ?>
+            User:
+            <?php echo $user['username']; ?>
         </p>
     </div>
 </body>

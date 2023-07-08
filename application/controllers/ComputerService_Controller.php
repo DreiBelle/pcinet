@@ -8,7 +8,7 @@ class ComputerService_Controller extends CI_Controller
         $this->load->model('AddDevice_Model');
         $this->load->library('pagination');
     }
-    public function index($page = 1)
+    public function index()
     {
         $user = $this->session->userdata('user');
 
