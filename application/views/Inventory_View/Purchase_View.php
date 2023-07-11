@@ -9,6 +9,7 @@
         .content {
             margin-left: 240px;
             padding: 20px;
+
         }
 
         /* td {
@@ -57,7 +58,7 @@
             background-color: white;
             border: 1px solid #888;
             padding: 20px;
-            width: fit-content;
+            width: 40vw;
             height: fit-content;
             border-radius: 25px;
 
@@ -141,7 +142,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 500px;" colspan="2">
-                                    <p style="margin-bottom: -5px; text-align: left; margin-left: 10px">Image</p>
+                                    <p style="margin-bottom: 0px; text-align: left; margin-left: 10px">Image</p>
                                     <input
                                         style="width: 95%; margin-left: 12px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
                                         type="file" name="Image" id="Image" required>
@@ -149,7 +150,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 500px;" colspan="2">
-                                    <p style="margin-bottom: -5px; text-align: left; margin-left: 10px">Item Name</p>
+                                    <p style="margin-bottom: 0px; text-align: left; margin-left: 10px">Name</p>
                                     <input
                                         style="width: 95%; margin-left: 12px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
                                         type="text" name="ItemName" id="ItemName" required>
@@ -157,10 +158,24 @@
                             </tr>
                             <tr>
                                 <td style="width: 100%;" colspan="2">
-                                    <p style="margin-bottom: -5px; text-align: left; margin-left: 10px">Item Price</p>
+                                    <p style="margin-bottom: 0px; text-align: left; margin-left: 10px">Price</p>
                                     <input
                                         style="width: 95%; margin-left: 12px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
                                         type="text" name="ItemPrice" id="ItemPrice" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;" colspan="2">
+                                    <p style="margin-bottom: 0px; text-align: left; margin-left: 10px">Category</p>
+                                    <select
+                                        style="width: 95%; margin-left: 12px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;"
+                                        name="ItemCategory" id="ItemCategory" required>
+                                        <option value="">Choose Category</option>
+                                        <option value="monitor">Monitor</option>
+                                        <option value="gpu">GPU</option>
+                                        <option value="cpu">CPU</option>
+                                    </select>
+
                                 </td>
                             </tr>
                             <tr>
@@ -181,15 +196,22 @@
         <div id="BuyStocks" class="BuyStocksDesign">
             <div class="flex-center">
                 <div id="BuyStocksContentDesign" class="BuyStocksContentDesign">
-                    <img id="ImageDisplay" src="" alt="Item Image">
+
+
+
+                    <img style="width: 100%; margin: 0px; border-radius: 5px;" id="ImageDisplay" src=""
+                        alt="Item Image">
                     <p id="ItemInfo"></p>
                     <form method="post" action="<?php echo site_url('/Inventory_Controller/AddStocks'); ?>">
                         <input type="hidden" name="ItemIDInput" id="ItemIDInput">
-                        <input type="text" name="ItemPriceInput" id="ItemPriceInput">
-                        <input type="text" name="StocksInput" id="StocksInput">
-                        <input style="margin: 12px; width: 90%; height: 30px;" type="submit" value="SAVE">
-                        <input style="margin: 12px; width: 90%; height: 30px;" type="button" value="Cancel"
-                            class="CloseBuyStockModal">
+                        <input type="hidden" name="ItemPriceInput" id="ItemPriceInput">
+                        <p id="ItemNameInput"></p>
+                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px; "
+                            type="text" name="StocksInput" id="StocksInput">
+                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px;"
+                            type="submit" value="Buy">
+                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px;"
+                            type="button" value="Close" class="CloseBuyStockModal">
 
                     </form>
                 </div>
@@ -211,7 +233,7 @@
 
             button.onclick = function () {
                 modal.style.display = "block";
-            };
+            }
 
             span.onclick = function () {
                 modal.style.display = "none";
@@ -231,11 +253,15 @@
             var ImageDisplay = document.getElementById("ImageDisplay");
             var infoParagraph = document.getElementById("ItemInfo");
             var StocksInput = document.getElementById("StocksInput");
+
             var ItemIDInput = document.getElementById("ItemIDInput");
             var ItemPriceInput = document.getElementById("ItemPriceInput");
+            var ItemNameInput = document.getElementById("ItemNameInput")
 
-            ItemIDInput.value = ItemID;
-            ItemPriceInput.value = ItemPrice;
+            ItemIDInput.innerHTML = ItemID;
+            ItemPriceInput.innerHTML = ItemPrice;
+            ItemNameInput.innerHTML = ItemName;
+
 
             if (!ImageDisplay || !infoParagraph || !StocksInput) {
                 console.error("One or more elements not found. Make sure the element IDs are correct.");
@@ -250,8 +276,12 @@
                 "Name: " + ItemName + "<br>" +
                 "Price: " + ItemPrice;
 
+
             infoParagraph.innerHTML = infoText;
 
+            StocksInput.value = Stocks;
+            ItemIDInput.value = ItemID;
+            ItemPriceInput.value = ItemPrice;
 
             modal.style.display = "block";
         }

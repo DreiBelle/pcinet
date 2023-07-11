@@ -11,11 +11,14 @@ class CustomerPurchase_Controller extends CI_Controller
     public function index()
     {
         $user = $this->session->userdata('user');
+        $data['Monitor'] = $this->CustomerPurchase_Model->GetMonitor();
+        $data['GPU'] = $this->CustomerPurchase_Model->GetGPU();
+        $data['CPU'] = $this->CustomerPurchase_Model->GetCPU();
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
-            $this->load->view('CustomerPurchase_View', $data);
+            $this->load->view('ComputerPurchaseOptions_View/CustomerPurchase_View', $data);
         } else if ($user['role'] == "customer") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarTechnician_View";
@@ -23,22 +26,16 @@ class CustomerPurchase_Controller extends CI_Controller
         }
     }
 
-    public function ViewCustomerPurchase()
+    public function InsertTotalExpense()
     {
-        $user = $this->session->userdata('user');
+        $totalPrice = json_decode($this->input->raw_input_stream)->totalPrice;
+       
+        $data = array(
+            'TotalBought' => $totalPrice,
+        );
 
+        $this->CustomerPurchase_Model->InsertExpense($data);
 
-        if ($user['role'] == "admin") {
-            $data['user'] = $user;
-            $data['navbar'] = "NavBar/NavbarAdmin_View";
-            $data['items'] = $this->CustomerPurchase_Model->GetData();
-            $this->load->view('CustomerPurchase_View', $data);
-        } else if ($user['role'] == "technician") {
-            $data['user'] = $user;
-            $data['navbar'] = "NavBar/NavbarTechnician_View";
-            $data['data'] = $this->CustomerPurchase_Model->GetData();
-            $this->load->view('CustomerPurchase_View', $data);
-        }
-
+        redirect('/CustomerPurchase_Controller');
     }
 }

@@ -69,11 +69,13 @@ class Inventory_Controller extends CI_Controller
 
         $ItemName = $this->input->post('ItemName');
         $ItemPrice = $this->input->post('ItemPrice');
+        $ItemCategory = $this->input->post('ItemCategory');
 
         $data = array(
             'ItemName' => $ItemName,
             'ItemPrice' => $ItemPrice,
             'Image' => $imageFileName,
+            'ItemCategory' => $ItemCategory,
             'ItemStock' => 0,
         );
 

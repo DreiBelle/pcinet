@@ -101,7 +101,7 @@
             </a>
 
             <a style="text-decoration: none; color:black;"
-                href="<?php echo site_url('/CustomerPurchase_Controller/ViewCustomerPurchase'); ?>">
+                href="<?php echo site_url('/CustomerPurchase_Controller'); ?>">
                 <li style="border-bottom: 1px solid black;">Purchase</li>
             </a>
 
