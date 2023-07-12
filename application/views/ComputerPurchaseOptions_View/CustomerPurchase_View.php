@@ -73,9 +73,8 @@
             </div>
         </div>
         <div>
-            <button style="width: 100%" onclick="calculateTotal()">Calculate Total Price</button>
             <table id="cartDisplay"
-                style="position: fixed; bottom: 10 ;width: 71%; background-color: #E2DFD2; height: 10%; margin-right: 5%; border-radius: 20px;">
+                style="position: fixed; bottom: 20 ;width: 71%; background-color: #E2DFD2; height: 10%; margin-right: 5%;">
             </table>
         </div>
     </div>
@@ -149,10 +148,21 @@
                 removeButton.addEventListener('click', createRemoveHandler(item.id));
                 newRow.appendChild(removeButton);
 
+                // var button = document.createElement('button');
+                // button.innerText = 'Calculate Total Price';
+                // button.addEventListener('click', calculateTotal);
+                // newRow.appendChild(button)
+                
                 cartDisplay.appendChild(newRow);
+                // Append the button to the cartDisplay element
+                // cartDisplay.parentNode.appendChild(button);
             }
 
-            updateTotalPrice();
+            var button = document.createElement('button');
+                button.innerText = 'Calculate Total Price';
+                button.addEventListener('click', calculateTotal);
+                newRow.appendChild(button)  
+
         }
 
         function updateTotalPrice() {
