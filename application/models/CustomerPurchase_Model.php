@@ -7,6 +7,19 @@ class CustomerPurchase_Model extends CI_Model
         return $query->result();
     }
 
+    public function GetDatabaseStock($ID)
+    {
+        $this->db->select('ItemStock');
+        $this->db->where('ItemID', $ID);
+        $query = $this->db->get('products');
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->ItemStock;
+        } else {
+            return 0;
+        }
+    }
+
     public function InsertExpense($data)
     {
         return $this->db->insert('purchases', $data);
@@ -32,4 +45,6 @@ class CustomerPurchase_Model extends CI_Model
         $query = $this->db->get('products');
         return $query->result();
     }
+
+
 }
