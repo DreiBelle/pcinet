@@ -33,21 +33,6 @@ class Login_Controller extends CI_Controller
             );
             $this->session->set_userdata('user', $userData);
 
-            // if ($user->role === 'admin') {
-            //     redirect('Dashboard_Controller');
-            // }
-            // elseif($user->role === 'technician') {
-            //     redirect('Dashboard_Controller');
-            // }
-            // elseif($user->role === 'data') {
-            //     redirect('DataAnalytics_Controller');
-            // }
-            // elseif($user->role === 'accountant') {
-            //     redirect('Accounting_Controller');
-            // }
-            // elseif($user->role === 'employee') {
-            //     redirect('Inventory_Controller');
-            // }
             redirect('Dashboard_Controller');
         
         } else {

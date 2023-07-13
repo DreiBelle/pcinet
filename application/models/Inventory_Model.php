@@ -7,6 +7,12 @@ class Inventory_Model extends CI_Model
         return $query->result();
     }
 
+    public function Search($InputSearch)
+    {
+        $this->db->like('ItemID', $InputSearch);
+        return $this->db->get('products')->result();
+    }
+
     public function InsertItem($data)
     {
         return $this->db->insert('products', $data);

@@ -31,24 +31,27 @@ class CustomerPurchase_Controller extends CI_Controller
         $ItemID = $this->input->post('ItemIDInput');
         $CurrentInput = (int) $this->input->post('QuantityInput');
         $DatabaseStocks = (int) $this->CustomerPurchase_Model->GetDatabaseStock($ItemID);
-
-        $NewStocks = $CurrentInput - $DatabaseStocks; 
-
+    
+        $NewStocks = $DatabaseStocks - $CurrentInput;
+    
         $data = array(
             'ItemStock' => $NewStocks,
         );
-
+    
         $this->CustomerPurchase_Model->AddStock($ItemID, $data);
-
-        redirect('/CustomerPurchase_Controller');
+    
+        // Send a response back to the JavaScript code
+        echo json_encode(['status' => 'success']);
     }
-
+    
     public function InsertTotalExpense()
     {
         $totalPrice = json_decode($this->input->raw_input_stream)->totalPrice;
+        $try = json_decode($this->input->raw_input_stream)->additionalProperty;
 
         $data = array(
             'TotalBought' => $totalPrice,
+            'try' => $try,
         );
 
         $this->CustomerPurchase_Model->InsertExpense($data);

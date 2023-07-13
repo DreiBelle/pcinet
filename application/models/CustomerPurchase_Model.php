@@ -9,9 +9,8 @@ class CustomerPurchase_Model extends CI_Model
 
     public function AddStock($ID, $data)
     {
-        $this->db->set($data);
         $this->db->where('ItemID', $ID);
-        $this->db->update('products');
+        $this->db->update('products', $data);
 
         return $this->db->affected_rows() > 0;
     }

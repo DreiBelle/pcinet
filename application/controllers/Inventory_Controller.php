@@ -92,7 +92,7 @@ class Inventory_Controller extends CI_Controller
 
         $currentStocks = (int) $this->Inventory_Model->getStocks($ItemID);
         $GetCurrentTotalExpenses = (int) $this->Inventory_Model->getExpenses($ItemID);
-        
+
         $newStocks = $currentStocks + $Stocks;
         $expenses = $Price * $Stocks;
         $GetTotalExpenses = $expenses + $GetCurrentTotalExpenses;
@@ -105,7 +105,27 @@ class Inventory_Controller extends CI_Controller
         $this->Inventory_Model->AddStock($ItemID, $data);
 
         redirect('/Inventory_Controller/ViewPurchase');
+    }
 
+    public function Search()
+    {
+        $user = $this->session->userdata('user');
 
+        $InputSearch = $this->input->post('SearchInput');
+
+        $data['items'] = $this->Inventory_Model->Search($InputSearch);
+
+        
+        if ($user['role'] == "admin") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
+            $data['items'] = $this->Inventory_Model->Search($InputSearch);
+            $this->load->view('Inventory_View/Purchase_View', $data);
+        } else if ($user['role'] == "technician") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarTechnician_View";
+            $data['items'] = $this->Inventory_Model->Search($InputSearch);
+            $this->load->view('Inventory_View/Purchase_View', $data);
+        }
     }
 }

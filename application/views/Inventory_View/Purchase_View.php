@@ -8,13 +8,11 @@
     <style>
         .content {
             margin-left: 240px;
-            padding: 20px;
-
+            padding-left: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
         }
-
-        /* td {
-            border: 1px solid black;
-        } */
 
         .SelectableRow:hover {
             background-color: lightblue;
@@ -58,7 +56,7 @@
             background-color: white;
             border: 1px solid #888;
             padding: 20px;
-            width: 40vw;
+            width: fit-content;
             height: fit-content;
             border-radius: 25px;
 
@@ -70,6 +68,10 @@
             align-items: center;
             height: 100vh;
         }
+    /* 
+            td {
+                border: 1px solid black;
+            } */
     </style>
 </head>
 
@@ -86,6 +88,23 @@
             font-size: 30px">+</button>
 
     <div class="content">
+
+        <div class="SearchBar" style="margin-bottom: 20px;">
+            <form method="post" action="<?php echo site_url('/Inventory_Controller/Search/'); ?>">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 90%;">
+                            <input style="width: 100%;" type="text" placeholder="SearchID" name="SearchInput"
+                                id="SearchInput">
+                        </td>
+                        <td style="width: 10%;">
+                            <input style="width: 100%;" type="submit" value="Search">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
         <table width="100%" style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
             <thead style="text-align: center; ">
                 <tr style="background-color: #f2f2f2;">
@@ -196,23 +215,65 @@
         <div id="BuyStocks" class="BuyStocksDesign">
             <div class="flex-center">
                 <div id="BuyStocksContentDesign" class="BuyStocksContentDesign">
-
-
-
-                    <img style="width: 100%; height: 40vh;object-fit: cover; margin: 0px; border-radius: 5px;" id="ImageDisplay" src=""
-                        alt="Item Image">
-                    <p id="ItemInfo"></p>
                     <form method="post" action="<?php echo site_url('/Inventory_Controller/AddStocks'); ?>">
-                        <input type="hidden" name="ItemIDInput" id="ItemIDInput">
-                        <input type="hidden" name="ItemPriceInput" id="ItemPriceInput">
-                        <p id="ItemNameInput"></p>
-                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px; "
-                            type="text" name="StocksInput" id="StocksInput">
-                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px;"
-                            type="submit" value="Buy">
-                        <input style="width: 100%; margin: 0px; border-radius: 5px; height: 5vh; margin-top: 10px;"
-                            type="button" value="Close" class="CloseBuyStockModal">
+                        <table style="width: 50vw; height: 50vh">
+                            <tr>
+                                <td colspan="2">
+                                    <h1 style="text-align: center; margin-bottom: 0px;" id="ItemNameInput"></h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <img style="width: 100%; height: 40vh;object-fit: cover; margin: 0px; border-radius: 5px;"
+                                        id="ImageDisplay" src="" alt="Item Image">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p style="text-align: center;" id="ItemInfo"></p>
+                                </td>
+                                <td>
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <button style="width: 100%">Update</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <button style="width: 100%">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
 
+                                    <input type="hidden" name="ItemIDInput" id="ItemIDInput">
+                                    <input type="hidden" name="ItemPriceInput" id="ItemPriceInput">
+
+                                    <h1 style="margin-bottom: -10px; font-size: 25px;">Buy Stocks:</h1>
+                                    <input
+                                        style="width: 100%; margin: 0px; border-radius: 5px; height: 30px; margin-top: 10px; "
+                                        type="text" name="StocksInput">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input
+                                        style="width: 100%; margin: 0px; border-radius: 5px; height: 30px; margin-top: 10px;"
+                                        type="submit" value="Buy">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input
+                                    style="width: 100%; margin: 0px; border-radius: 5px; height: 30px; margin-top: 10px;"
+                                    type="button" value="Close" class="CloseBuyStockModal">
+                                </td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
             </div>
@@ -252,18 +313,15 @@
 
             var ImageDisplay = document.getElementById("ImageDisplay");
             var infoParagraph = document.getElementById("ItemInfo");
-            var StocksInput = document.getElementById("StocksInput");
 
+            var ItemNameInput = document.getElementById("ItemNameInput")
             var ItemIDInput = document.getElementById("ItemIDInput");
             var ItemPriceInput = document.getElementById("ItemPriceInput");
-            var ItemNameInput = document.getElementById("ItemNameInput")
 
             ItemIDInput.innerHTML = ItemID;
             ItemPriceInput.innerHTML = ItemPrice;
-            ItemNameInput.innerHTML = ItemName;
 
-
-            if (!ImageDisplay || !infoParagraph || !StocksInput) {
+            if (!ImageDisplay || !infoParagraph) {
                 console.error("One or more elements not found. Make sure the element IDs are correct.");
                 return;
             }
@@ -272,14 +330,15 @@
 
             console.log(Image);
 
-            var infoText = "ID: " + ItemID + "<br>" +
-                "Name: " + ItemName + "<br>" +
-                "Price: " + ItemPrice;
+            ItemNameInput.innerHTML = ItemName
+
+            var infoText =
+                "Current Stock: " + Stocks + "<br>" +
+                "Supplier Cost: " + ItemPrice;
 
 
             infoParagraph.innerHTML = infoText;
 
-            StocksInput.value = Stocks;
             ItemIDInput.value = ItemID;
             ItemPriceInput.value = ItemPrice;
 

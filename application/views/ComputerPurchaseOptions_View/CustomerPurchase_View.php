@@ -57,9 +57,9 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 70%">
-                                                <input style="width: 35%" type="text" name="ItemIDInput" id="ItemIDInput"
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
                                                     value="<?php echo $item->ItemID; ?>" disabled>
-                                                <input style="width: 35%" type="number" placeholder="Enter Quantity"
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
                                                     name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
                                             </td>
                                             <td style="width: 30%">
@@ -78,7 +78,7 @@
         <!-- wag -->
         <div>
             <table id="cartDisplay"
-                style="position: fixed; bottom: 20 ;width: 71%; background-color: #E2DFD2; height: 10%; margin-right: 5%;">
+                style="position: fixed; bottom: 20 ;width: 71%; background-color: #caf0f8; height: 10%; margin-right: 5%;">
             </table>
         </div>
     </div>
@@ -108,9 +108,9 @@
                 };
                 cartItems.push(addedItem);
             }
-            0
             updateCartDisplay();
         }
+
 
         function createRemoveHandler(itemId) {
             return function () {
@@ -136,37 +136,47 @@
                 var newRow = document.createElement('tr');
 
                 var itemIdCell = document.createElement('td');
+                itemIdCell.width = '90%';
+                itemIdCell.style.borderBottom = '1px solid black';
+                itemIdCell.style.borderCollapse = 'collapse';
                 itemIdCell.textContent = item.id;
                 newRow.appendChild(itemIdCell);
 
                 var quantityCell = document.createElement('td');
                 quantityCell.textContent = item.quantity;
+                quantityCell.style.borderBottom = '1px solid black';
+
                 newRow.appendChild(quantityCell);
 
                 var priceCell = document.createElement('td');
                 priceCell.textContent = item.price.toFixed(2);
+                priceCell.style.borderBottom = '1px solid black';
+
                 newRow.appendChild(priceCell);
 
-                var removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
-                removeButton.addEventListener('click', createRemoveHandler(item.id));
+                var removeButton = document.createElement('td');
+                var removeButtonElement = document.createElement('button');
+                removeButtonElement.textContent = 'Remove';
+                removeButtonElement.addEventListener('click', createRemoveHandler(item.id));
+                removeButton.appendChild(removeButtonElement);
+                removeButton.style.borderBottom = '1px solid black';
+
                 newRow.appendChild(removeButton);
 
-                // var button = document.createElement('button');
-                // button.innerText = 'Calculate Total Price';
-                // button.addEventListener('click', calculateTotal);
-                // newRow.appendChild(button)
-
                 cartDisplay.appendChild(newRow);
-                // Append the button to the cartDisplay element
-                // cartDisplay.parentNode.appendChild(button);
+
+                var buttonRow = document.createElement('tr');
+                var buttonCell = document.createElement('td');
+                buttonCell.colSpan = 4;
+                var payNowButton = document.createElement('button');
+                payNowButton.innerText = 'Pay Now';
+                payNowButton.style.width = "100%";
+                payNowButton.addEventListener('click', calculateTotal);
             }
 
-            var button = document.createElement('button');
-            button.innerText = 'Calculate Total Price';
-            button.addEventListener('click', calculateTotal);
-            newRow.appendChild(button)
-
+            buttonCell.appendChild(payNowButton);
+            buttonRow.appendChild(buttonCell);
+            cartDisplay.appendChild(buttonRow);
         }
 
         function updateTotalPrice() {
@@ -179,16 +189,40 @@
 
             for (var i = 0; i < cartItems.length; i++) {
                 totalPrice += cartItems[i].price;
+
+                var itemId = cartItems[i].id;
+                var quantity = cartItems[i].quantity;
+
+                // Send an AJAX request to reduce the stock for each item
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/ReduceStock'); ?>", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                var data = "ItemIDInput=" + encodeURIComponent(itemId) + "&QuantityInput=" + encodeURIComponent(quantity);
+                xhr.send(data);
             }
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/InsertTotalExpense'); ?>", true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            var data = JSON.stringify({ totalPrice: totalPrice });
-            xhr.send(data);
 
-            cartItems = [];
-            updateCartDisplay();
+            // Create an object with additional data
+            var additionalData = {
+                totalPrice: totalPrice,
+                additionalProperty: "additional value",
+            };
+
+            // Merge additionalData with the existing data object
+            var data = JSON.stringify(Object.assign({}, additionalData));
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    cartItems = [];
+                    updateCartDisplay();
+                }
+            };
+
+            xhr.send(data);
         }
     </script>
 </body>
