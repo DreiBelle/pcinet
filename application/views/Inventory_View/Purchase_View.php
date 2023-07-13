@@ -199,7 +199,7 @@
 
 
 
-                    <img style="width: 100%; margin: 0px; border-radius: 5px;" id="ImageDisplay" src=""
+                    <img style="width: 100%; height: 40vh;object-fit: cover; margin: 0px; border-radius: 5px;" id="ImageDisplay" src=""
                         alt="Item Image">
                     <p id="ItemInfo"></p>
                     <form method="post" action="<?php echo site_url('/Inventory_Controller/AddStocks'); ?>">

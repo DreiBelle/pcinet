@@ -25,103 +25,6 @@
     <?php $this->load->view($navbar) ?>
     <div class="content">
         <h1 style="text-align: center;">Products</h1>
-        <h1 style="text-align: left;">Monitors</h1>
-        <div style="width: 100%; overflow-x: auto;">
-            <div style="display: flex; flex-wrap: nowrap;">
-                <?php foreach ($Monitor as $item): ?>
-                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
-                        <table
-                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
-                            <tr>
-                                <td
-                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
-                                </td>
-                                <td style="width: 300px; margin-left: 50px;">
-                                    <table style="width: 100%;">
-                                        <tr>
-                                            <td colspan="2">Name:
-                                                <?php echo $item->ItemName; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">Quantity:
-                                                <?php echo $item->ItemStock; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-top: 60px;" colspan="2">
-                                        <tr>
-                                            <td style="width: 70%">
-                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
-                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
-                                            </td>
-                                            <td style="width: 30%">
-                                                <button style="width: 100%"
-                                                    onclick="addToCart(<?php echo $item->ItemID; ?>)">Add to Cart</button>
-                                            </td>
-                                        </tr>
-                                </td>
-                            </tr>
-                        </table>
-                        </td>
-                        </tr>
-                        </table>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-
-        <h1 style="text-align: left;">CPU</h1>
-        <div style="width: 100%; overflow-x: auto;">
-            <div style="display: flex; flex-wrap: nowrap;">
-                <?php foreach ($CPU as $item): ?>
-                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
-                        <table
-                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
-                            <tr>
-                                <td
-                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
-                                </td>
-                                <td style="width: 300px; margin-left: 50px;">
-                                    <table style="width: 100%;">
-                                        <tr>
-                                            <td colspan="2">Name:
-                                                <?php echo $item->ItemName; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">Quantity:
-                                                <?php echo $item->ItemStock; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-top: 60px;" colspan="2">
-                                        <tr>
-                                            <td style="width: 70%">
-                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
-                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
-                                            </td>
-                                            <td style="width: 30%">
-                                                <button style="width: 100%"
-                                                    onclick="addToCart(<?php echo $item->ItemID; ?>)">Add to Cart</button>
-                                            </td>
-                                        </tr>
-                                </td>
-                            </tr>
-                        </table>
-                        </td>
-                        </tr>
-                        </table>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
 
         <h1 style="text-align: left;">GPU</h1>
         <div style="width: 100%; overflow-x: auto;">
@@ -135,7 +38,6 @@
                                     style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
                                 </td>
                                 <td style="width: 300px; margin-left: 50px;">
-                                <form method="post" action="CustomerPurchase_Controller/ReduceStock"></form>
                                     <table style="width: 100%;">
                                         <tr>
                                             <td colspan="2">Name:
@@ -151,22 +53,23 @@
                                             <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="padding-top: 60px;" colspan="2">
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
                                         <tr>
                                             <td style="width: 70%">
-                                                    <input style="width: 100%" type="number" placeholder="Enter Quantity"
-                                                        name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                                <input style="width: 35%" type="text" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 35%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
                                             </td>
                                             <td style="width: 30%">
-                                                <button style="width: 100%"
-                                                    onclick="addToCart(<?php echo $item->ItemID; ?>)">Add to Cart</button>
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>)" value="Add to Cart">
                                             </td>
                                         </tr>
+                                    </table>
                                 </td>
                             </tr>
-                        </table>
-                        </td>
-                        </tr>
                         </table>
                     </div>
                 <?php endforeach ?>

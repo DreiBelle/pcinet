@@ -26,23 +26,27 @@ class CustomerPurchase_Controller extends CI_Controller
         }
     }
 
-    public function ReduceStock(){
-        $ID = (int)
+    public function ReduceStock()
+    {
+        $ItemID = $this->input->post('ItemIDInput');
         $CurrentInput = (int) $this->input->post('QuantityInput');
-        $DatabaseStocks = (int) $this->CustomerPurchase_Model->getStocks($ItemID);
+        $DatabaseStocks = (int) $this->CustomerPurchase_Model->GetDatabaseStock($ItemID);
 
+        $NewStocks = $CurrentInput - $DatabaseStocks; 
 
         $data = array(
-            'DeviceID' => $DeviceID,
+            'ItemStock' => $NewStocks,
         );
 
-        $this->CustomerPurchase_Model->GetDatabaseStock($ID);
+        $this->CustomerPurchase_Model->AddStock($ItemID, $data);
+
+        redirect('/CustomerPurchase_Controller');
     }
 
     public function InsertTotalExpense()
     {
         $totalPrice = json_decode($this->input->raw_input_stream)->totalPrice;
-       
+
         $data = array(
             'TotalBought' => $totalPrice,
         );

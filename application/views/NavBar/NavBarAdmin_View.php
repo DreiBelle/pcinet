@@ -133,23 +133,10 @@
                     </a>
                 </div>
             </li>
-            <li class="dropdown">
-                <span>Human Resource</span>
-                <div class="dropdown-content">
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Add Employee</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Update Employee</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Remove Employee</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>View Employee</p>
-                    </a>
-                </div>
-            </li>
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/HumanResource_Controller'); ?>">
+                <li style="border-bottom: 1px solid black;">Human Resource</li>
+            </a>
             <li class="dropdown">
                 <span>Accounting</span>
                 <div class="dropdown-content">

@@ -7,6 +7,15 @@ class CustomerPurchase_Model extends CI_Model
         return $query->result();
     }
 
+    public function AddStock($ID, $data)
+    {
+        $this->db->set($data);
+        $this->db->where('ItemID', $ID);
+        $this->db->update('products');
+
+        return $this->db->affected_rows() > 0;
+    }
+
     public function GetDatabaseStock($ID)
     {
         $this->db->select('ItemStock');
@@ -28,6 +37,7 @@ class CustomerPurchase_Model extends CI_Model
     public function GetMonitor()
     {
         $this->db->where('ItemCategory', 'Monitor');
+        $this->db->where('ItemStock !=', 0);
         $query = $this->db->get('products');
         return $query->result();
     }
@@ -35,6 +45,7 @@ class CustomerPurchase_Model extends CI_Model
     public function GetCPU()
     {
         $this->db->where('ItemCategory', 'CPU');
+        $this->db->where('ItemStock !=', 0);
         $query = $this->db->get('products');
         return $query->result();
     }
@@ -42,6 +53,7 @@ class CustomerPurchase_Model extends CI_Model
     public function GetGPU()
     {
         $this->db->where('ItemCategory', 'GPU');
+        $this->db->where('ItemStock !=', 0);
         $query = $this->db->get('products');
         return $query->result();
     }
