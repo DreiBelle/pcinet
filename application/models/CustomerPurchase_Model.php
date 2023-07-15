@@ -36,7 +36,7 @@ class CustomerPurchase_Model extends CI_Model
     public function GetMonitor()
     {
         $this->db->where('ItemCategory', 'Monitor');
-        $this->db->where('ItemStock !=', 0);
+        $this->db->where('ItemStock <=', 0);
         $query = $this->db->get('products');
         return $query->result();
     }

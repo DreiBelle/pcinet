@@ -64,7 +64,8 @@
                                             </td>
                                             <td style="width: 30%">
                                                 <input style="width: 100%" type="submit"
-                                                    onclick="addToCart(<?php echo $item->ItemID; ?>)" value="Add to Cart">
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
                                             </td>
                                         </tr>
                                     </table>
@@ -86,16 +87,25 @@
         var cartItems = [];
         var totalPrice = 0;
 
-        function addToCart(itemId) {
+        function addToCart(itemId, itemName, MaxQuantityDatabase) {
             var quantityInput = document.getElementById('QuantityInput_' + itemId);
             var quantity = parseInt(quantityInput.value);
 
-            var existingItemIndex = cartItems.findIndex(function (item) {
+            if(quantityInput.value !== "") {
+                var existingItemIndex = cartItems.findIndex(function (item) {
                 return item.id === itemId;
             });
 
             var itemPriceElement = document.getElementById('Price_' + itemId);
             var itemPrice = parseFloat(itemPriceElement.innerText.split(' ')[1]);
+
+            var maxQuantity = MaxQuantityDatabase
+
+            if (quantity > maxQuantity) {
+                // Limit the quantity to the maximum available
+                quantity = maxQuantity;
+                quantityInput.value = maxQuantity;
+            }
 
             if (existingItemIndex !== -1) {
                 cartItems[existingItemIndex].quantity += quantity;
@@ -103,12 +113,20 @@
             } else {
                 var addedItem = {
                     id: itemId,
+                    name: itemName,
                     quantity: quantity,
                     price: itemPrice * quantity
                 };
                 cartItems.push(addedItem);
             }
             updateCartDisplay();
+
+            quantityInput.value = "";
+            }
+            else
+            {
+
+            }
         }
 
 
@@ -139,19 +157,17 @@
                 itemIdCell.width = '90%';
                 itemIdCell.style.borderBottom = '1px solid black';
                 itemIdCell.style.borderCollapse = 'collapse';
-                itemIdCell.textContent = item.id;
+                itemIdCell.textContent = item.name;
                 newRow.appendChild(itemIdCell);
 
                 var quantityCell = document.createElement('td');
                 quantityCell.textContent = item.quantity;
                 quantityCell.style.borderBottom = '1px solid black';
-
                 newRow.appendChild(quantityCell);
 
                 var priceCell = document.createElement('td');
                 priceCell.textContent = item.price.toFixed(2);
                 priceCell.style.borderBottom = '1px solid black';
-
                 newRow.appendChild(priceCell);
 
                 var removeButton = document.createElement('td');
@@ -160,24 +176,29 @@
                 removeButtonElement.addEventListener('click', createRemoveHandler(item.id));
                 removeButton.appendChild(removeButtonElement);
                 removeButton.style.borderBottom = '1px solid black';
-
                 newRow.appendChild(removeButton);
 
                 cartDisplay.appendChild(newRow);
+            }
 
-                var buttonRow = document.createElement('tr');
+            var buttonRow = document.getElementById('buttonRow');
+            if (!buttonRow && cartItems.length > 0) {
+                buttonRow = document.createElement('tr');
+                buttonRow.id = 'buttonRow';
                 var buttonCell = document.createElement('td');
                 buttonCell.colSpan = 4;
                 var payNowButton = document.createElement('button');
                 payNowButton.innerText = 'Pay Now';
                 payNowButton.style.width = "100%";
                 payNowButton.addEventListener('click', calculateTotal);
+                buttonCell.appendChild(payNowButton);
+                buttonRow.appendChild(buttonCell);
+                cartDisplay.appendChild(buttonRow);
+            } else if (buttonRow && cartItems.length === 0) {
+                buttonRow.parentNode.removeChild(buttonRow);
             }
-
-            buttonCell.appendChild(payNowButton);
-            buttonRow.appendChild(buttonCell);
-            cartDisplay.appendChild(buttonRow);
         }
+
 
         function updateTotalPrice() {
             var totalDisplay = document.getElementById('totalDisplay');
@@ -219,6 +240,11 @@
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     cartItems = [];
                     updateCartDisplay();
+
+                    var buttonRow = document.getElementById('buttonRow');
+                    if (buttonRow && buttonRow.parentNode) { // Check if buttonRow exists and its parentNode exists
+                        buttonRow.parentNode.removeChild(buttonRow); // Remove the buttonRow from the DOM
+                    }
                 }
             };
 
