@@ -140,17 +140,14 @@
             <li class="dropdown">
                 <span>Accounting</span>
                 <div class="dropdown-content">
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Add Records</p>
+                    <a href="<?php echo site_url('/Accounting_Controller/ExpensesView'); ?>">
+                        <p>Expenses</p>
                     </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Update Records</p>
+                    <a href="<?php echo site_url('/Accounting_Controller/SalesView'); ?>">
+                        <p>Sales</p>
                     </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Remove Records</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>View Records</p>
+                    <a href="<?php echo site_url('/Accounting_Controller/PayrollView'); ?>">
+                        <p>Payroll</p>
                     </a>
                 </div>
             </li>
