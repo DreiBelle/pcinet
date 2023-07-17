@@ -17,6 +17,12 @@ class Accounting_Model extends CI_Model
         return $query->result();
     }
 
+    public function GetAllSales()
+    {
+        $query = $this->db->get('sales');
+        return $query->result();
+    }
+
     public function AddSalary($ID, $data)
     {
         $this->db->set($data);
@@ -24,6 +30,20 @@ class Accounting_Model extends CI_Model
         $this->db->update('salary_employee');
 
         return $this->db->affected_rows() > 0;
+    }
+
+    public function CalculateTotal()
+    {
+        $query = $this->db->select('SUM(TotalPrice) AS Total')
+            ->from('sales')
+            ->get();
+
+        if ($query->num_rows() > 0) {
+            $result = $query->row();
+            return $result->Total;
+        }
+
+        return 0;
     }
 }
 

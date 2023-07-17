@@ -23,7 +23,7 @@ class Accounting_Controller extends CI_Controller
             $this->load->view('Dashboard_View', $data);
         }
     }
-    
+
     public function ExpensesView()
     {
         $user = $this->session->userdata('user');
@@ -33,6 +33,23 @@ class Accounting_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('/Accounting_View/Expense_View', $data);
+        } else if ($user['role'] == "Accounting") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarAccounting_View";
+            $this->load->view('Dashboard_View', $data);
+        }
+    }
+
+    public function SalesView()
+    {
+        $user = $this->session->userdata('user');
+        $data['Sales'] = $this->Accounting_Model->GetAllSales();
+        $data['Total'] = $this->Accounting_Model->CalculateTotal();
+
+        if ($user['role'] == "admin") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
+            $this->load->view('/Accounting_View/Sales_View', $data);
         } else if ($user['role'] == "Accounting") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAccounting_View";

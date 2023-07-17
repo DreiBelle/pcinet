@@ -2,7 +2,7 @@
 
 <head>
     <title>
-        Expense
+        Sales
     </title>
 
     <style>
@@ -54,50 +54,49 @@
             <table style="border-collapse: collapse; width: 100%;">
                 <thead>
                     <tr>
-                        <th style="width: 16.66%">
-                            Item ID
+                        <th style="width: 33%">
+                            ID
                         </th>
-                        <th style="width: 16.66%">
-                            Name
+                        <th style="width: 33%">
+                            Date
                         </th>
-                        <th style="width: 16.66%">
-                            Bought Stocks
-                        </th>
-                        <th style="width: 16.66%">
-                            Total Stocks
-                        </th>
-                        <th style="width: 16.66%">
-                            Price
-                        </th>
-                        <th style="width: 16.66%">
-                            Bought Date
+                        <th style="width: 33%">
+                            Total Bought
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($Items as $Item): ?>
+                    <?php foreach ($Sales as $Sale): ?>
                         <tr class="SelectableRow">
                             <td>
-                                <?php echo $Item->ItemID; ?>
+                                <?php echo $Sale->ID; ?>
                             </td>
                             <td>
-                                <?php echo $Item->ItemName; ?>
+                                <?php echo $Sale->Date; ?>
                             </td>
                             <td>
-                                <?php echo $Item->Quantity; ?>
-                            </td>
-                            <td>
-                                <?php echo $Item->TotalStock; ?>
-                            </td>
-                            <td>
-                                <?php echo $Item->Price; ?>
-                            </td>
-                            <td>
-                                <?php echo $Item->Date; ?>
+                                <?php echo $Sale->TotalPrice; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
+            </table>
+        </div>
+
+        <div name="for totaling all the audit">
+            <table style="border-collapse: collapse; width: 71%; position: fixed; bottom: 10px;">
+                <tr>
+                    <td>
+                        <h3 style="padding-top: 20px;">
+                            Total Sales:
+                        </h3>
+                    </td>
+                    <td>
+                        <h3 style="padding-top: 20px;">
+                            <?php echo $Total ?>
+                        </h3>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
