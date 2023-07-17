@@ -18,6 +18,41 @@
         ::-webkit-scrollbar {
             display: none;
         }
+
+        .paymentModal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black w/ opacity */
+        }
+
+        .paymentmodal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 200px;
+            text-align: center;
+        }
+
+        .payment-option {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -75,6 +110,16 @@
                     </div>
                 <?php endforeach ?>
             </div>
+
+            <div id="paymentModal" class="paymentModal">
+                <div class="paymentmodal-content">
+                    <h4>Choose Payment Method</h4>
+                    <button id="cashBtn" class="payment-option">Cash</button>
+                    <button id="bdoBtn" class="payment-option">BDO</button>
+                    <button id="rbbiBtn" class="payment-option">RBBI</button>
+                    <button id="ClsBtn" class="payment-option">Camcel</button>
+                </div>
+            </div>
         </div>
         <!-- wag -->
         <div>
@@ -91,40 +136,39 @@
             var quantityInput = document.getElementById('QuantityInput_' + itemId);
             var quantity = parseInt(quantityInput.value);
 
-            if(quantityInput.value !== "") {
+            if (quantityInput.value !== "") {
                 var existingItemIndex = cartItems.findIndex(function (item) {
-                return item.id === itemId;
-            });
+                    return item.id === itemId;
+                });
 
-            var itemPriceElement = document.getElementById('Price_' + itemId);
-            var itemPrice = parseFloat(itemPriceElement.innerText.split(' ')[1]);
+                var itemPriceElement = document.getElementById('Price_' + itemId);
+                var itemPrice = parseFloat(itemPriceElement.innerText.split(' ')[1]);
 
-            var maxQuantity = MaxQuantityDatabase
+                var maxQuantity = MaxQuantityDatabase
 
-            if (quantity > maxQuantity) {
-                // Limit the quantity to the maximum available
-                quantity = maxQuantity;
-                quantityInput.value = maxQuantity;
+                if (quantity > maxQuantity) {
+                    // Limit the quantity to the maximum available
+                    quantity = maxQuantity;
+                    quantityInput.value = maxQuantity;
+                }
+
+                if (existingItemIndex !== -1) {
+                    cartItems[existingItemIndex].quantity += quantity;
+                    cartItems[existingItemIndex].price += itemPrice * quantity;
+                } else {
+                    var addedItem = {
+                        id: itemId,
+                        name: itemName,
+                        quantity: quantity,
+                        price: itemPrice * quantity
+                    };
+                    cartItems.push(addedItem);
+                }
+                updateCartDisplay();
+
+                quantityInput.value = "";
             }
-
-            if (existingItemIndex !== -1) {
-                cartItems[existingItemIndex].quantity += quantity;
-                cartItems[existingItemIndex].price += itemPrice * quantity;
-            } else {
-                var addedItem = {
-                    id: itemId,
-                    name: itemName,
-                    quantity: quantity,
-                    price: itemPrice * quantity
-                };
-                cartItems.push(addedItem);
-            }
-            updateCartDisplay();
-
-            quantityInput.value = "";
-            }
-            else
-            {
+            else {
 
             }
         }
@@ -206,51 +250,90 @@
         }
 
         function calculateTotal() {
-            var totalPrice = 0;
+            var modal = document.getElementById("paymentModal");
+            modal.style.display = "block";
 
-            for (var i = 0; i < cartItems.length; i++) {
-                totalPrice += cartItems[i].price;
+            var cashBtn = document.getElementById("cashBtn");
+            cashBtn.addEventListener("click", function () {
+                processPayment("Cash");
+            });
 
-                var itemId = cartItems[i].id;
-                var quantity = cartItems[i].quantity;
+            var bdoBtn = document.getElementById("bdoBtn");
+            bdoBtn.addEventListener("click", function () {
+                processPayment("BDO");
+            });
 
-                // Send an AJAX request to reduce the stock for each item
+            var rbbiBtn = document.getElementById("rbbiBtn");
+            rbbiBtn.addEventListener("click", function () {
+                processPayment("RBBI");
+            });
+
+            var ClsBtn = document.getElementById("ClsBtn");
+            ClsBtn.addEventListener("click", function () {
+                processPayment("ClsBtn");
+            });
+        }
+
+        function processPayment(chosen) {
+            var modal = document.getElementById("paymentModal");
+
+            if (chosen == "Cash") {
+                var totalPrice = 0;
+
+                for (var i = 0; i < cartItems.length; i++) {
+                    totalPrice += cartItems[i].price;
+
+                    var itemId = cartItems[i].id;
+                    var quantity = cartItems[i].quantity;
+
+                    // Send an AJAX request to reduce the stock for each item
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/ReduceStock'); ?>", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    var data = "ItemIDInput=" + encodeURIComponent(itemId) + "&QuantityInput=" + encodeURIComponent(quantity);
+                    xhr.send(data);
+                }
+
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/ReduceStock'); ?>", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/InsertTotalExpense'); ?>", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
 
-                var data = "ItemIDInput=" + encodeURIComponent(itemId) + "&QuantityInput=" + encodeURIComponent(quantity);
+                // Create an object with additional data
+                var additionalData = {
+                    totalPrice: totalPrice,
+                    additionalProperty: "additional value",
+                };
+
+                // Merge additionalData with the existing data object
+                var data = JSON.stringify(Object.assign({}, additionalData));
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        cartItems = [];
+                        updateCartDisplay();
+
+                        var buttonRow = document.getElementById('buttonRow');
+
+                        location.reload();
+                        if (buttonRow && buttonRow.parentNode) { // Check if buttonRow exists and its parentNode exists
+                            buttonRow.parentNode.removeChild(buttonRow); // Remove the buttonRow from the DOM
+                        }
+                    }
+                };
+
                 xhr.send(data);
             }
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/InsertTotalExpense'); ?>", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            // Create an object with additional data
-            var additionalData = {
-                totalPrice: totalPrice,
-                additionalProperty: "additional value",
-            };
-
-            // Merge additionalData with the existing data object
-            var data = JSON.stringify(Object.assign({}, additionalData));
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    cartItems = [];
-                    updateCartDisplay();
-
-                    var buttonRow = document.getElementById('buttonRow');
-
-                    location.reload();
-                    if (buttonRow && buttonRow.parentNode) { // Check if buttonRow exists and its parentNode exists
-                        buttonRow.parentNode.removeChild(buttonRow); // Remove the buttonRow from the DOM
-                    }
-                }
-            };
-
-            xhr.send(data);
+            else if (chosen == "BDO") {
+                console.log("this is BDO")
+            }
+            else if (chosen == "RBBI") {
+                console.log("this is Rbbi")
+            }
+            else if (chosen == "ClsBtn") {
+                console.log("this is Close")
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
