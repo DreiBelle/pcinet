@@ -23,6 +23,22 @@ class Accounting_Controller extends CI_Controller
             $this->load->view('Dashboard_View', $data);
         }
     }
+    
+    public function ExpensesView()
+    {
+        $user = $this->session->userdata('user');
+        $data['Items'] = $this->Accounting_Model->GetAllExpenses();
+
+        if ($user['role'] == "admin") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarAdmin_View";
+            $this->load->view('/Accounting_View/Expense_View', $data);
+        } else if ($user['role'] == "Accounting") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarAccounting_View";
+            $this->load->view('Dashboard_View', $data);
+        }
+    }
 
     public function PayrollView()
     {

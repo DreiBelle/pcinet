@@ -99,6 +99,8 @@ class Inventory_Controller extends CI_Controller
 
         $data = array(
             'ItemStock' => $newStocks,
+            'CurrentBought' => $Stocks,
+            'CurrentPrice' => $expenses,
             'TotalProductExpenses' => $GetTotalExpenses,
         );
 

@@ -242,6 +242,8 @@
                     updateCartDisplay();
 
                     var buttonRow = document.getElementById('buttonRow');
+
+                    location.reload();
                     if (buttonRow && buttonRow.parentNode) { // Check if buttonRow exists and its parentNode exists
                         buttonRow.parentNode.removeChild(buttonRow); // Remove the buttonRow from the DOM
                     }

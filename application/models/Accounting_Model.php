@@ -11,6 +11,12 @@ class Accounting_Model extends CI_Model
 
     }
 
+    public function GetAllExpenses()
+    {
+        $query = $this->db->get('expenses');
+        return $query->result();
+    }
+
     public function AddSalary($ID, $data)
     {
         $this->db->set($data);
