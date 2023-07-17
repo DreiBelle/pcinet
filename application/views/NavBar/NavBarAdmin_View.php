@@ -50,14 +50,6 @@
             margin-left: 10px;
         }
 
-        #User {
-            position: fixed;
-            bottom: 5;
-            right: 10;
-            background-color: #f1f1f1;
-            border-radius: 10px;
-        }
-
         /* added */
 
         .dropdown {
@@ -116,25 +108,12 @@
                     </a>
                 </div>
             </li>
-            <li class="dropdown">
-                <span>Data Analytics</span>
-                <div class="dropdown-content">
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Computer Service Report</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>HR Report</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Accounting Report</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Inventory Report</p>
-                    </a>
-                </div>
-            </li>
-            <a style="text-decoration: none; color:black;"
-                href="<?php echo site_url('/HumanResource_Controller'); ?>">
+            
+            <a style="text-decoration: none; color:black;" href="<?php echo site_url('/DataAnalytics_Controller/AccountingReport'); ?>">
+                <li style="border-bottom: 1px solid black;">Data Analytics</li>
+            </a>
+
+            <a style="text-decoration: none; color:black;" href="<?php echo site_url('/HumanResource_Controller'); ?>">
                 <li style="border-bottom: 1px solid black;">Human Resource</li>
             </a>
             <li class="dropdown">
@@ -166,8 +145,14 @@
         </ul>
     </div>
 
-    <div id="User">
-        <p class="User">
+    <div>
+        <p style="position: fixed;
+            bottom: 5;
+            right: 10;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            padding: 5px;
+            background-color:#caf0f8">
             User:
             <?php echo $user['username']; ?>
         </p>
