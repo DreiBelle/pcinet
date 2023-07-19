@@ -45,6 +45,7 @@ class Accounting_Controller extends CI_Controller
         $user = $this->session->userdata('user');
         $data['Sales'] = $this->Accounting_Model->GetAllSales();
         $data['Total'] = $this->Accounting_Model->CalculateTotal();
+        $data['Item'] = $this->Accounting_Model->GetItems();
 
         if ($user['role'] == "admin") {
             $data['user'] = $user;
@@ -55,6 +56,46 @@ class Accounting_Controller extends CI_Controller
             $data['navbar'] = "NavBar/NavbarAccounting_View";
             $this->load->view('Dashboard_View', $data);
         }
+    }
+
+    public function getbyid()
+    {
+        $ID = $this->input->post("ItemID");
+        $Items = $this->Accounting_Model->GetItembyID($ID);
+
+        echo "<table>
+        <thead>
+            <tr>
+                <th>ItemID</th>
+                <th>ItemName</th>
+                <th>ItemQuantity</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>";
+        foreach ($Items as $row) {
+            echo "
+                <tr>
+                    <td>
+                        " . $row->ItemID . "
+                    </td>
+                    <td>
+                        " . $row->ItemName . "
+                    </td>
+                    <td>
+                        " . $row->ItemQuantity . "
+                    </td>
+                    <td>
+                        " . $row->Date . "
+                    </td>
+                </tr>
+                ";
+        }
+        ;
+        echo "
+        </tbody>
+    </table>";
+
     }
 
     public function PayrollView()

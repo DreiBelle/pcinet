@@ -45,6 +45,18 @@ class Accounting_Model extends CI_Model
 
         return 0;
     }
+
+    public function GetItems()
+    {
+        $query = $this->db->get('sales_items');
+        return $query->result();
+    }
+
+    public function GetItembyID($ID)
+    {
+        $this->db->like('ItemID', $ID);
+        return $this->db->get('sales_items')->result();
+    }
 }
 
 ?>

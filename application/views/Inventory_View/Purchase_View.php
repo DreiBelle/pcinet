@@ -193,6 +193,10 @@
                                         <option value="monitor">Monitor</option>
                                         <option value="gpu">GPU</option>
                                         <option value="cpu">CPU</option>
+                                        <option value="keyboard">Keyboard</option>
+                                        <option value="ssd">SSD</option>
+                                        <option value="hhd">HHD</option>
+                                        <option value="mouse">Mouse</option>
                                     </select>
 
                                 </td>

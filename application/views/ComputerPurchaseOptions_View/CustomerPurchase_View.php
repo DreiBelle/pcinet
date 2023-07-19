@@ -9,6 +9,7 @@
             margin-top: 20px;
             margin-right: 20px;
             margin-bottom: 20px;
+            padding-bottom: 100px;
         }
 
         /* td {
@@ -21,21 +22,14 @@
 
         .paymentModal {
             display: none;
-            /* Hidden by default */
             position: fixed;
-            /* Stay in place */
             z-index: 1;
-            /* Sit on top */
             left: 0;
             top: 0;
             width: 100%;
-            /* Full width */
             height: 100%;
-            /* Full height */
             overflow: auto;
-            /* Enable scroll if needed */
             background-color: rgba(0, 0, 0, 0.5);
-            /* Black w/ opacity */
         }
 
         .paymentmodal-content {
@@ -110,31 +104,392 @@
                     </div>
                 <?php endforeach ?>
             </div>
+        </div>
 
-            <div id="paymentModal" class="paymentModal">
-                <div class="paymentmodal-content">
-                    <h4>Choose Payment Method</h4>
-                    <button id="cashBtn" class="payment-option">Cash</button>
-                    <button id="bdoBtn" class="payment-option">BDO</button>
-                    <button id="rbbiBtn" class="payment-option">RBBI</button>
-                    <button id="ClsBtn" class="payment-option">Camcel</button>
-                </div>
+        <h1 style="text-align: left;">CPU</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($CPU as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
             </div>
         </div>
-        <!-- wag -->
+
+        <h1 style="text-align: left;">Monitor</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($Monitor as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <h1 style="text-align: left;">RAM</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($RAM as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <h1 style="text-align: left;">SSD</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($SSD as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <h1 style="text-align: left;">Keyboard</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($Keyboard as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <h1 style="text-align: left;">Mouse</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($Mouse as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <h1 style="text-align: left;">HHD</h1>
+        <div style="width: 100%; overflow-x: auto;">
+            <div style="display: flex; flex-wrap: nowrap;">
+                <?php foreach ($HHD as $item): ?>
+                    <div style="flex: 0 0 auto; width: max-content; margin-right: 20px;">
+                        <table
+                            style="width: 100%;border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 10px;">
+                            <tr>
+                                <td
+                                    style="width: 300px;background: URL(<?php echo MAIN_BASE_URL . $item->Image; ?>); height: 180px; background-size: cover;">
+                                </td>
+                                <td style="width: 300px; margin-left: 50px;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="2">Name:
+                                                <?php echo $item->ItemName; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Quantity:
+                                                <?php echo $item->ItemStock; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="Price_<?php echo $item->ItemID; ?>">Price: <?php echo $item->ItemPrice; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 60px;" colspan="2"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70%">
+                                                <input style="width: 35%" type="hidden" name="ItemIDInput" id="ItemIDInput"
+                                                    value="<?php echo $item->ItemID; ?>" disabled>
+                                                <input style="width: 100%" type="number" placeholder="Enter Quantity"
+                                                    name="QuantityInput" id="QuantityInput_<?php echo $item->ItemID; ?>">
+                                            </td>
+                                            <td style="width: 30%">
+                                                <input style="width: 100%" type="submit"
+                                                    onclick="addToCart(<?php echo $item->ItemID; ?>, '<?php echo $item->ItemName; ?>' , '<?php echo $item->ItemStock; ?>' )"
+                                                    value="Add to Cart">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+
+        <div id="paymentModal" class="paymentModal">
+            <div class="paymentmodal-content">
+                <h4>Choose Payment Method</h4>
+                <button id="cashBtn" class="payment-option">Cash</button>
+                <button id="bdoBtn" class="payment-option">BDO</button>
+                <button id="rbbiBtn" class="payment-option">RBBI</button>
+                <button id="ClsBtn" class="payment-option">Can cel</button>
+            </div>
+        </div>
+
         <div>
             <table id="cartDisplay"
-                style="position: fixed; bottom: 20 ;width: 71%; background-color: #caf0f8; height: 10%; margin-right: 5%;">
+                style="position: fixed; bottom: 20 ;width: 78%; background-color: #caf0f8; height: 10%; margin-right: 5%; border-radius: 10px;">
             </table>
         </div>
+
+        <input type="hidden" id="latestid" value="<?php echo $LatestID ?>">
+
     </div>
     <script>
         var cartItems = [];
         var totalPrice = 0;
-
+        
         function addToCart(itemId, itemName, MaxQuantityDatabase) {
             var quantityInput = document.getElementById('QuantityInput_' + itemId);
             var quantity = parseInt(quantityInput.value);
+            var itemIdCounter = document.getElementById('latestid').value;
 
             if (quantityInput.value !== "") {
                 var existingItemIndex = cartItems.findIndex(function (item) {
@@ -144,7 +499,7 @@
                 var itemPriceElement = document.getElementById('Price_' + itemId);
                 var itemPrice = parseFloat(itemPriceElement.innerText.split(' ')[1]);
 
-                var maxQuantity = MaxQuantityDatabase
+                var maxQuantity = MaxQuantityDatabase;
 
                 if (quantity > maxQuantity) {
                     // Limit the quantity to the maximum available
@@ -160,19 +515,20 @@
                         id: itemId,
                         name: itemName,
                         quantity: quantity,
-                        price: itemPrice * quantity
+                        price: itemPrice * quantity,
                     };
                     cartItems.push(addedItem);
                 }
                 updateCartDisplay();
 
                 quantityInput.value = "";
-            }
-            else {
 
+                // Insert the item into the "sales" table
+                insertSale(itemIdCounter, itemName, quantity);
+            } else {
+                // Handle empty quantity input
             }
         }
-
 
         function createRemoveHandler(itemId) {
             return function () {
@@ -281,10 +637,11 @@
                 var totalPrice = 0;
 
                 for (var i = 0; i < cartItems.length; i++) {
-                    totalPrice += cartItems[i].price;
+                    var item = cartItems[i];
+                    totalPrice += item.price;
 
-                    var itemId = cartItems[i].id;
-                    var quantity = cartItems[i].quantity;
+                    var itemId = item.id;
+                    var quantity = item.quantity;
 
                     // Send an AJAX request to reduce the stock for each item
                     var xhr = new XMLHttpRequest();
@@ -335,6 +692,28 @@
                 modal.style.display = "none";
             }
         }
+
+        function insertSale(itemId, itemName, quantity) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "<?php echo site_url('/CustomerPurchase_Controller/InsertSale'); ?>", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    console.log("Response:", xhr.responseText);
+                }
+            };
+
+            var data =
+                "ItemID=" + encodeURIComponent(itemId) +
+                "&ItemName=" + encodeURIComponent(itemName) +
+                "&Quantity=" + encodeURIComponent(quantity);
+
+            console.log("Data:", data);
+
+            xhr.send(data);
+        }
+
     </script>
 </body>
 

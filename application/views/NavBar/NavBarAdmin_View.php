@@ -46,8 +46,8 @@
 
         img {
             height: auto;
-            width: 170px;
-            margin-left: 10px;
+            width: 200px;
+            margin-left: 0px;
         }
 
         /* added */
@@ -81,7 +81,12 @@
             text-align: left;
             margin-left: -10px;
         }
+
+        .dropdown span i {
+            margin-right: 5px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -89,57 +94,57 @@
         <ul>
             <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Dashboard_Controller'); ?>">
-                <li style="border-bottom: 1px solid black; border-top: 1px solid black">Dashboard</li>
+                <li style="border-bottom: 1px solid black; border-top: 1px solid black"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
             </a>
 
             <a style="text-decoration: none; color:black;"
                 href="<?php echo site_url('/CustomerPurchase_Controller'); ?>">
-                <li style="border-bottom: 1px solid black;">Purchase</li>
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-shopping-cart"></i> Purchase</li>
             </a>
 
             <li class="dropdown">
-                <span>Computer Service</span>
+                <span><i class="fas fa-cogs"></i> Computer Service</span>
                 <div class="dropdown-content">
                     <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p>Calculate Total Price</p>
+                        <p><i class="fas fa-calculator"></i> Calculate Total Price</p>
                     </a>
                     <a href="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
-                        <p>View Devices</p>
+                        <p><i class="fas fa-desktop"></i> View Devices</p>
                     </a>
                 </div>
             </li>
             
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/DataAnalytics_Controller/AccountingReport'); ?>">
-                <li style="border-bottom: 1px solid black;">Data Analytics</li>
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-chart-bar"></i> Data Analytics</li>
             </a>
 
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/HumanResource_Controller'); ?>">
-                <li style="border-bottom: 1px solid black;">Human Resource</li>
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-users"></i> Human Resource</li>
             </a>
             <li class="dropdown">
-                <span>Accounting</span>
+                <span><i class="fas fa-money-bill"></i> Accounting</span>
                 <div class="dropdown-content">
                     <a href="<?php echo site_url('/Accounting_Controller/ExpensesView'); ?>">
-                        <p>Expenses</p>
+                        <p><i class="fas fa-file-invoice-dollar"></i> Expenses</p>
                     </a>
                     <a href="<?php echo site_url('/Accounting_Controller/SalesView'); ?>">
-                        <p>Sales</p>
+                        <p><i class="fas fa-chart-line"></i> Sales</p>
                     </a>
                     <a href="<?php echo site_url('/Accounting_Controller/PayrollView'); ?>">
-                        <p>Payroll</p>
+                        <p><i class="fas fa-file-invoice"></i> Payroll</p>
                     </a>
                 </div>
             </li>
             <a style="text-decoration: none; color:black;"
                 href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
-                <li style="border-bottom: 1px solid black;">Inventory</li>
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-boxes"></i> Inventory</li>
             </a>
 
             <a style="text-decoration: none; color:black;"
                 href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
 
                 <li>
-                    <div style="position: fixed; bottom:0;">Log out</div>
+                    <div style="position: fixed; bottom:0;"><i class="fas fa-sign-out-alt"></i> Log out</div>
                 </li>
             </a>
         </ul>
@@ -147,7 +152,7 @@
 
     <div>
         <p style="position: fixed;
-            bottom: 5;
+            top: 5;
             right: 10;
             background-color: #f1f1f1;
             border-radius: 10px;
