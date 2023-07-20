@@ -94,7 +94,8 @@
         <ul>
             <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Dashboard_Controller'); ?>">
-                <li style="border-bottom: 1px solid black; border-top: 1px solid black"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                <li style="border-bottom: 1px solid black; border-top: 1px solid black"><i
+                        class="fas fa-tachometer-alt"></i> Dashboard</li>
             </a>
 
             <a style="text-decoration: none; color:black;"
@@ -102,19 +103,13 @@
                 <li style="border-bottom: 1px solid black;"><i class="fas fa-shopping-cart"></i> Purchase</li>
             </a>
 
-            <li class="dropdown">
-                <span><i class="fas fa-cogs"></i> Computer Service</span>
-                <div class="dropdown-content">
-                    <a href="<?php echo site_url('/ComputerService_Controller'); ?>">
-                        <p><i class="fas fa-calculator"></i> Calculate Total Price</p>
-                    </a>
-                    <a href="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
-                        <p><i class="fas fa-desktop"></i> View Devices</p>
-                    </a>
-                </div>
-            </li>
-            
-            <a style="text-decoration: none; color:black;" href="<?php echo site_url('/DataAnalytics_Controller/AccountingReport'); ?>">
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-cogs"></i> View Devices</li>
+            </a>
+
+            <a style="text-decoration: none; color:black;"
+                href="<?php echo site_url('/DataAnalytics_Controller/AccountingReport'); ?>">
                 <li style="border-bottom: 1px solid black;"><i class="fas fa-chart-bar"></i> Data Analytics</li>
             </a>
 
@@ -152,14 +147,17 @@
 
     <div>
         <p style="position: fixed;
-            top: 5;
-            right: 10;
-            background-color: #f1f1f1;
-            border-radius: 10px;
+            top: 0;
+            left: 240;
+            width: 82.6%;
             padding: 5px;
-            background-color:#caf0f8">
-            User:
+            background-color:#caf0f8;
+            margin: 0px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;">
             <?php echo $user['username']; ?>
+            
         </p>
     </div>
 </body>

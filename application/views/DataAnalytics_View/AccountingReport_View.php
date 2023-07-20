@@ -15,6 +15,7 @@
         td {
             border: 1px solid black;
         }
+
     </style>
 </head>
 
@@ -31,7 +32,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" style="height: 500px;">
                         <canvas style="width: 100%;" id="salesChart"></canvas>
                     </td>
                 </tr>
@@ -41,7 +42,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" style="height: 500px">
                         <canvas style="width: 100%;" id="expensesChart"></canvas>
                     </td>
                 </tr>
@@ -54,10 +55,10 @@
                     </td>
                 </tr>
                 <tr style="width: 100%;">
-                    <td style="width: 50%;">
+                    <td style="width: 50%; height: 500px">
                         <canvas id="PayrollGraph"></canvas>
                     </td>
-                    <td style="width: 50%;">
+                    <td style="width: 50%; height: 500px">
                         <canvas id="OverallGraph"></canvas>
                     </td>
                 </tr>

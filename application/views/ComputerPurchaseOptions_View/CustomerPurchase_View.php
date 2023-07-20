@@ -6,7 +6,7 @@
         .content {
             margin-left: 240px;
             padding-left: 20px;
-            margin-top: 20px;
+            margin-top: 40px;
             margin-right: 20px;
             margin-bottom: 20px;
             padding-bottom: 100px;
@@ -53,7 +53,7 @@
 <body>
     <?php $this->load->view($navbar) ?>
     <div class="content">
-        <h1 style="text-align: center;">Products</h1>
+        <h1 style="text-align: center;">CHECK OUT</h1>
 
         <h1 style="text-align: left;">GPU</h1>
         <div style="width: 100%; overflow-x: auto;">
@@ -459,7 +459,7 @@
                             </tr>
                         </table>
                     </div>
-                <?php endforeach ?>
+                <?php endforeach ?> 
             </div>
         </div>
 

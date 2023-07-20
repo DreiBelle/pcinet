@@ -9,7 +9,7 @@
         .contents {
             margin-left: 240px;
             padding-left: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
             margin-right: 20px;
             margin-bottom: 20px;
         }
@@ -54,40 +54,46 @@
             <table style="border-collapse: collapse; width: 100%; cursor: pointer;">
                 <thead>
                     <tr>
-                        <th style="width: 20%">
-                            Employee ID
+                        <th colspan="5"
+                            style="width: 20%; background-color: #caf0f8; border-bottom: 1px solid black; text-align: center; padding: 12px; font-weight: bold;">
+                            PAYROLL
                         </th>
-                        <th style="width: 20%">
-                            Name
-                        </th>
-                        <th style="width: 20%">
-                            Department
-                        </th>
-                        <th style="width: 20%">
-                            Salary
-                        </th>
-                        <th style="width: 20%">
-                            Pay Date
-                        </th>
+                    </tr>
+                    <tr>
+                        <th
+                            style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Employee ID</th>
+                        <th
+                            style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Name</th>
+                        <th
+                            style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Department</th>
+                        <th
+                            style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Salary</th>
+                        <th
+                            style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Pay Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($Employees as $Employee): ?>
-                        <tr class="SelectableRow"
+                        <tr class="SelectableRow" style="border: 1px solid #dddddd;"
                             onclick="ShowUpdateForm('<?php echo $Employee->Employee_ID; ?>','<?php echo $Employee->Name; ?>','<?php echo $Employee->Salary; ?>','<?php echo $Employee->Pay_Date; ?>')">
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Employee->Employee_ID; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Employee->Name; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Employee->Department; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Employee->Salary; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Employee->Pay_Date; ?>
                             </td>
                         </tr>
@@ -114,8 +120,7 @@
                         <tr>
                             <td colspan="2">
                                 <input type="hidden" name="Employee_ID" value="">
-                                <input style="width: 100%;" type="text" name="Name"
-                                    id="EditName" value="" disabled>
+                                <input style="width: 100%;" type="text" name="Name" id="EditName" value="" disabled>
                             </td>
                         </tr>
                         <tr>
@@ -125,8 +130,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" placeholder="Enter Salary" name="Salary" id="EditSalary"
-                                    value="">
+                                <input type="text" placeholder="Enter Salary" name="Salary" id="EditSalary" value="">
                             </td>
                         </tr>
                         <tr>

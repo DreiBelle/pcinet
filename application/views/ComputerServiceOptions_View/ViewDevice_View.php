@@ -2,10 +2,12 @@
 
 <head>
     <title>View Device</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         #contents {
             margin-left: 240px;
             padding: 20px;
+            margin-top: 30px;
         }
 
         .modal {
@@ -57,19 +59,26 @@
             background-color: lightblue;
             cursor: pointer;
         }
+
+        body {
+            color: #36454f;
+        }
     </style>
 </head>
 
 <body>
     <?php $this->load->view($navbar) ?>
+
+    <button style="width: 4%; height: 8%; position: fixed; bottom: 10px; right: 10px; border-radius: 100px;"
+        id="AddDeviceButton">
+        <i class="fas fa-plus"></i></button>
+
     <div id="contents">
         <form method="get" action="<?php echo site_url('/ComputerService_Controller/ViewDevices'); ?>">
             <input style="height: 30px; width: 94.5%;" type="text" name="searchDeviceID"
                 placeholder="Search by DeviceID">
-            <input style="height: 30px; width: 5%;" type="submit" value="S">
+            <input style="height: 30px; width: 5%; padding-left: 5px; box-sizing: border-box;" type="submit" value="S">
         </form>
-
-        <button style="margin-bottom: 20px; width: 100%; height: 30px;" id="AddDeviceButton">Add Devices</button>
 
         <div id="AddDeviceModal" class="modal">
             <div class="flex-center">
@@ -174,7 +183,7 @@
 
         <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
             <thead>
-                <tr style="background-color: #f2f2f2;">
+                <tr style="background-color: #caf0f8; color: #36454f;">
                     <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device ID</th>
                     <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Customer Name</th>
                     <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ccc;">Device Model</th>
@@ -238,7 +247,7 @@
 
                 <table style="width: 100%;">
                     <form method="post" action="<?php echo site_url('/ComputerService_Controller/UpdateDevice'); ?>">
-                        <input type="hidden" id="deviceIDInput" name=deviceIDInput >
+                        <input type="hidden" id="deviceIDInput" name=deviceIDInput>
                         <tr>
                             <td colspan="2" style="text-align: center; font-size: 50px; padding-top: -50px;">Update
                                 Devices</td>
@@ -385,8 +394,8 @@
             var modal = document.getElementById("AddDeviceModal");
             var span = document.getElementsByClassName("close")[0];
 
-            window.addEventListener('click', function(event){
-                if(event.target === modal){
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
                     closeModal();
                 }
             })

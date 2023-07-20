@@ -9,7 +9,7 @@
         .contents {
             margin-left: 240px;
             padding-left: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
             margin-right: 20px;
             margin-bottom: 20px;
         }
@@ -56,27 +56,33 @@
             <table style="border-collapse: collapse; width: 100%;">
                 <thead>
                     <tr>
-                        <th style="width: 33%">
-                            ID
+                        <th colspan="3"
+                            style="width: 33%; background-color: #caf0f8; border-bottom: 1px solid black; text-align: center; padding: 12px; font-weight: bold;">
+                            SALES
                         </th>
-                        <th style="width: 33%">
-                            Date
-                        </th>
-                        <th style="width: 33%">
-                            Total Bought
-                        </th>
+                    </tr>
+                    <tr>
+                        <th
+                            style="width: 33%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            ID</th>
+                        <th
+                            style="width: 33%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Date</th>
+                        <th
+                            style="width: 33%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                            Total Bought</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($Sales as $Sale): ?>
-                        <tr class="SelectableRow" onclick="ShowUpdateForm('<?php echo $Sale->ID; ?>')">
-                            <td>
+                        <tr class="SelectableRow" style="border: 1px solid #dddddd;">
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Sale->ID; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Sale->Date; ?>
                             </td>
-                            <td>
+                            <td style="text-align: left; padding: 12px;">
                                 <?php echo $Sale->TotalPrice; ?>
                             </td>
                         </tr>
@@ -86,17 +92,20 @@
         </div>
 
         <div name="for totaling all the audit">
-            <table style="border-collapse: collapse; width: 71%; position: fixed; bottom: 10px;">
-                <tr>
-                    <td>
-                        <h3 style="padding-top: 20px;">
+            <table style="border-collapse: collapse; width: 100%; position:relative; bottom: -20px;">
+                <tr style="width: 100%">
+                    <td style="width: 33%;"> 
+                        <p style="padding: 10px; font-size: 20px;">
                             Total Sales:
-                        </h3>
+                        </p>
                     </td>
-                    <td>
-                        <h3 style="padding-top: 20px;">
+                    <td style="width: 33%;">
+                       
+                    </td>
+                    <td style="width: 33%">
+                        <p style="padding: 10px; font-size: 20px;">
                             <?php echo $Total ?>
-                        </h3>
+                        </p>
                     </td>
                 </tr>
             </table>

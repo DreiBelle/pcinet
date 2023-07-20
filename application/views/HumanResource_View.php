@@ -6,7 +6,7 @@
         #contents {
             margin-left: 240px;
             padding-left: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
             margin-right: 20px;
             margin-bottom: 20px;
         }
@@ -140,49 +140,47 @@
         </div>
 
         <div name="employee table">
-            <table style="border-collapse: collapse; width: 100%; cursor: pointer;">
-                <thead>
-                    <tr>
-                        <th style="width: 20%">
-                            Employee ID
-                        </th>
-                        <th style="width: 20%">
-                            Name
-                        </th>
-                        <th style="width: 20%">
-                            Department
-                        </th>
-                        <th style="width: 20%">
-                            Position
-                        </th>
-                        <th style="width: 20%">
-                            Hire Date
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($Employees as $Employee): ?>
-                        <tr class="SelectableRow"
-                            onclick="ShowUpdateForm('<?php echo $Employee->Employee_ID; ?>','<?php echo $Employee->Name; ?>','<?php echo $Employee->Department; ?>','<?php echo $Employee->Position; ?>', '<?php echo $Employee->Hire_Date; ?>')">
-                            <td>
-                                <?php echo $Employee->Employee_ID; ?>
-                            </td>
-                            <td>
-                                <?php echo $Employee->Name; ?>
-                            </td>
-                            <td>
-                                <?php echo $Employee->Department; ?>
-                            </td>
-                            <td>
-                                <?php echo $Employee->Position; ?>
-                            </td>
-                            <td>
-                                <?php echo $Employee->Hire_Date; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                    Employee ID
+                </th>
+                <th style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                    Name
+                </th>
+                <th style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                    Department
+                </th>
+                <th style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                    Position
+                </th>
+                <th style="width: 20%; background-color: #caf0f8; border: 1px solid #dddddd; text-align: left; padding: 12px; font-weight: bold;">
+                    Hire Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($Employees as $Employee): ?>
+                <tr class="SelectableRow"
+                    onclick="ShowUpdateForm('<?php echo $Employee->Employee_ID; ?>','<?php echo $Employee->Name; ?>','<?php echo $Employee->Department; ?>','<?php echo $Employee->Position; ?>', '<?php echo $Employee->Hire_Date; ?>')" style="border: 1px solid #dddddd;">
+                    <td style="text-align: left; padding: 12px;"><?php echo $Employee->Employee_ID; ?></td>
+                    <td style="text-align: left; padding: 12px;"><?php echo $Employee->Name; ?></td>
+                    <td style="text-align: left; padding: 12px;"><?php echo $Employee->Department; ?></td>
+                    <td style="text-align: left; padding: 12px;"><?php echo $Employee->Position; ?></td>
+                    <td style="text-align: left; padding: 12px;"><?php echo $Employee->Hire_Date; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+</html>
+
         </div>
 
         <div name="modal for updating an employee" id="UpdateDiv" class="UpdateDiv">
