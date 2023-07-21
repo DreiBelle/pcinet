@@ -92,7 +92,9 @@
 <body>
     <div id="navbar">
         <ul>
-            <li><a href="/pcinet"><img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo"></a></li>
+            <div style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px;">
+                <img src="<?php echo base_url('assets/pcinet_logo.png'); ?>" alt="Logo">
+            </div>
             <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Dashboard_Controller'); ?>">
                 <li style="border-bottom: 1px solid black; border-top: 1px solid black"><i
                         class="fas fa-tachometer-alt"></i> Dashboard</li>
@@ -130,17 +132,19 @@
                     </a>
                 </div>
             </li>
+
             <a style="text-decoration: none; color:black;"
                 href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
                 <li style="border-bottom: 1px solid black;"><i class="fas fa-boxes"></i> Inventory</li>
             </a>
 
             <a style="text-decoration: none; color:black;"
-                href="<?php echo site_url('/Inventory_Controller/ViewPurchase'); ?>">
+                href="<?php echo site_url('/Setting_Controller'); ?>">
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-boxes"></i> Settings</li>
+            </a>
 
-                <li>
-                    <div style="position: fixed; bottom:0;"><i class="fas fa-sign-out-alt"></i> Log out</div>
-                </li>
+            <a style="text-decoration: none; color:black;" href="<?php echo site_url('/Login_Controller'); ?>">
+                <li style="border-bottom: 1px solid black;"><i class="fas fa-sign-out-alt"></i> Logout</li>
             </a>
         </ul>
     </div>
@@ -157,7 +161,7 @@
             font-weight: bold;
             text-transform: uppercase;">
             <?php echo $user['username']; ?>
-            
+
         </p>
     </div>
 </body>

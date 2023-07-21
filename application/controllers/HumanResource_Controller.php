@@ -19,8 +19,10 @@ class HumanResource_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('HumanResource_View', $data);
-        } else {
-            redirect('Login_Controller');
+        } else if ($user['role'] == "employee") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarEmployee_View";
+            $this->load->view('HumanResource_View', $data);
         }
     }
 

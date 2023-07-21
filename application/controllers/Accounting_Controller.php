@@ -33,10 +33,14 @@ class Accounting_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('/Accounting_View/Expense_View', $data);
-        } else if ($user['role'] == "Accounting") {
+        } else if ($user['role'] == "accountant") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAccounting_View";
-            $this->load->view('Dashboard_View', $data);
+            $this->load->view('/Accounting_View/Expense_View', $data);
+        } else if ($user['role'] == "data") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarData_View";
+            $this->load->view('/Accounting_View/Expense_View', $data);
         }
     }
 
@@ -51,10 +55,14 @@ class Accounting_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('/Accounting_View/Sales_View', $data);
-        } else if ($user['role'] == "Accounting") {
+        } else if ($user['role'] == "accountant") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAccounting_View";
-            $this->load->view('Dashboard_View', $data);
+            $this->load->view('/Accounting_View/Sales_View', $data);
+        } else if ($user['role'] == "data") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarData_View";
+            $this->load->view('/Accounting_View/Sales_View', $data);
         }
     }
 
@@ -107,10 +115,14 @@ class Accounting_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('/Accounting_View/Payroll_View', $data);
-        } else if ($user['role'] == "Accounting") {
+        } else if ($user['role'] == "accountant") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAccounting_View";
-            $this->load->view('Dashboard_View', $data);
+            $this->load->view('/Accounting_View/Payroll_View', $data);
+        } else if ($user['role'] == "data") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarData_View";
+            $this->load->view('/Accounting_View/Payroll_View', $data);
         }
     }
 

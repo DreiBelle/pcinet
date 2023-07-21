@@ -25,10 +25,10 @@ class CustomerPurchase_Controller extends CI_Controller
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
             $this->load->view('ComputerPurchaseOptions_View/CustomerPurchase_View', $data);
-        } else if ($user['role'] == "customer") {
+        } else if ($user['role'] == "accountant") {
             $data['user'] = $user;
-            $data['navbar'] = "NavBar/NavbarTechnician_View";
-            $this->load->view('Dashboard_View', $data);
+            $data['navbar'] = "NavBar/NavbarAccounting_View";
+            $this->load->view('ComputerPurchaseOptions_View/CustomerPurchase_View', $data);
         }
     }
 

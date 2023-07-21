@@ -38,7 +38,12 @@ class Inventory_Controller extends CI_Controller
         } else if ($user['role'] == "technician") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarTechnician_View";
-            $data['data'] = $this->AddDevice_Model->GetData();
+            $data['items'] = $this->Inventory_Model->GetAllItems();
+            $this->load->view('Inventory_View/Purchase_View', $data);
+        } else if ($user['role'] == "employee") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarEmployee_View";
+            $data['items'] = $this->Inventory_Model->GetAllItems();
             $this->load->view('Inventory_View/Purchase_View', $data);
         }
 
@@ -117,7 +122,7 @@ class Inventory_Controller extends CI_Controller
 
         $data['items'] = $this->Inventory_Model->Search($InputSearch);
 
-        
+
         if ($user['role'] == "admin") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
@@ -126,6 +131,11 @@ class Inventory_Controller extends CI_Controller
         } else if ($user['role'] == "technician") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarTechnician_View";
+            $data['items'] = $this->Inventory_Model->Search($InputSearch);
+            $this->load->view('Inventory_View/Purchase_View', $data);
+        } else if ($user['role'] == "employee") {
+            $data['user'] = $user;
+            $data['navbar'] = "NavBar/NavbarEmployee_View";
             $data['items'] = $this->Inventory_Model->Search($InputSearch);
             $this->load->view('Inventory_View/Purchase_View', $data);
         }

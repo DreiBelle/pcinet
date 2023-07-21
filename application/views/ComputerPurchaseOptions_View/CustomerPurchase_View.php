@@ -459,7 +459,7 @@
                             </tr>
                         </table>
                     </div>
-                <?php endforeach ?> 
+                <?php endforeach ?>
             </div>
         </div>
 
@@ -467,9 +467,8 @@
             <div class="paymentmodal-content">
                 <h4>Choose Payment Method</h4>
                 <button id="cashBtn" class="payment-option">Cash</button>
-                <button id="bdoBtn" class="payment-option">BDO</button>
                 <button id="rbbiBtn" class="payment-option">RBBI</button>
-                <button id="ClsBtn" class="payment-option">Can cel</button>
+                <button id="ClsBtn" class="payment-option">Cancel</button>
             </div>
         </div>
 
@@ -485,7 +484,7 @@
     <script>
         var cartItems = [];
         var totalPrice = 0;
-        
+
         function addToCart(itemId, itemName, MaxQuantityDatabase) {
             var quantityInput = document.getElementById('QuantityInput_' + itemId);
             var quantity = parseInt(quantityInput.value);
@@ -614,14 +613,9 @@
                 processPayment("Cash");
             });
 
-            var bdoBtn = document.getElementById("bdoBtn");
-            bdoBtn.addEventListener("click", function () {
-                processPayment("BDO");
-            });
-
             var rbbiBtn = document.getElementById("rbbiBtn");
             rbbiBtn.addEventListener("click", function () {
-                processPayment("RBBI");
+                processPayment("CARD(RBBI)");
             });
 
             var ClsBtn = document.getElementById("ClsBtn");
@@ -681,14 +675,22 @@
 
                 xhr.send(data);
             }
-            else if (chosen == "BDO") {
-                console.log("this is BDO")
-            }
-            else if (chosen == "RBBI") {
+            else if (chosen == "CARD(RBBI)") {
                 console.log("this is Rbbi")
+                var totalPrice = 0;
+
+                for (var i = 0; i < cartItems.length; i++) {
+                    var item = cartItems[i];
+                    totalPrice += item.price;
+
+                    var itemId = item.id;
+                    var quantity = item.quantity;
+                }
+
+                var url = "http://192.168.10.128/RBBI/index.php/access/index/85/" + totalPrice + "/?url=http://192.168.10.224/PCINET/index.php/CustomerPurchase_Controller&data=";
+                window.location.href = url;
             }
             else if (chosen == "ClsBtn") {
-                console.log("this is Close")
                 modal.style.display = "none";
             }
         }

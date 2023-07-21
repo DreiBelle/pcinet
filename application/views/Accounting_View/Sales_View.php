@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($Sales as $Sale): ?>
-                        <tr class="SelectableRow" style="border: 1px solid #dddddd;">
+                        <tr class="SelectableRow" style="border: 1px solid #dddddd;" onclick="ShowUpdateForm('<?php echo $Sale->ID; ?>')">
                             <td style="text-align: left; padding: 12px;">
                                 <?php echo $Sale->ID; ?>
                             </td>

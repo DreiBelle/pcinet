@@ -16,7 +16,7 @@ class DataAnalytics_Controller extends CI_Controller
         if ($user['role'] == "admin") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavbarAdmin_View";
-            $this->load->view('DataAnalytics_View', $data);
+            $this->load->view('/DataAnalytics_View/AccountingReport_View', $data);
         } else if ($user['role'] == "data") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavBarData_View";
@@ -40,7 +40,7 @@ class DataAnalytics_Controller extends CI_Controller
         } else if ($user['role'] == "data") {
             $data['user'] = $user;
             $data['navbar'] = "NavBar/NavBarData_View";
-            $this->load->view('Dashboard_View', $data);
+            $this->load->view('/DataAnalytics_View/AccountingReport_View', $data);
         }
     }
 }
